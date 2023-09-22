@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import '../css/global.css';
 import GenericButton from "../components/buttons/genericButton";
+import Guest from "../utils/interfaces"
 
-interface Convidado {
-  id?: number;
-  name: string;
-  code: string
-}
-
-function Home() {
-  const [convidados, setConvidados] = useState<Convidado[]>([]);
-  const [novoConvidado, setNovoConvidado] =useState<Convidado>({
+export default function Home() {
+  const [convidados, setConvidados] = useState<Guest[]>([]);
+  const [novoConvidado, setNovoConvidado] =useState<Guest>({
     name: '',
     code: ''
   })
@@ -88,5 +83,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

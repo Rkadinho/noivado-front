@@ -1,5 +1,5 @@
 
-// ALINHAMENTO DE TEXTO
+/* ALINHAMENTO DE TEXTO */
 .text-left {
   text-align: left;
 }
@@ -16,7 +16,7 @@
   text-align: justify;
 }
 
-// ALINHAMENTO DE CONTEUDO
+/* ALINHAMENTO DE CONTEUDO */
 .align-top {
   vertical-align: top;
 }
@@ -29,9 +29,17 @@
   vertical-align: bottom;
 }
 
-// ALINHAMENTO DE ELEMENTOS
+/* ALINHAMENTO DE ELEMENTOS */
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
 }
