@@ -1,5 +1,5 @@
 import React from "react";
-import Input from '../../utils/interfaces';
+import { Input } from '../../utils/interfaces';
 
 export default function GenericInput({ text }: Input) {
   return(

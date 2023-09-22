@@ -1,17 +1,25 @@
 import React from "react";
+import { Tables } from "../../utils/interfaces";
 
-export default function Table () {
+export default function Table ({ titles, contents, codes }: Tables) {
   return (
     <div>
       <table>
-        <th>
-          nome
-          <tr>ricardo</tr>
-        </th>
-        <th>
-          code
-          <tr>teste</tr>
-        </th>
+        <thead>
+            <tr>
+              {titles?.map((title, i) => (
+                <th key={i}>{title}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {contents?.map((content, i) => (
+              <tr key={i}>
+                <td>{content.name}</td>
+                <td>{content.code}</td>
+              </tr>
+            ))}
+          </tbody>
       </table>
     </div>
   )

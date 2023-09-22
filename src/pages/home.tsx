@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import '../css/global.css';
 import GenericButton from "../components/buttons/genericButton";
-import Guest from "../utils/interfaces"
+import { Guest } from "../utils/interfaces"
 
 export default function Home() {
   const [convidados, setConvidados] = useState<Guest[]>([]);

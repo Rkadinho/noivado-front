@@ -1,7 +1,7 @@
 import React from "react";
 import '../../css/global.css';
 import '../../css/components/genericButton.css';
-import Buttons from "../../utils/interfaces";
+import { Buttons } from "../../utils/interfaces";
 
 export default function GenericButton({ text }: Buttons) {
   return (
