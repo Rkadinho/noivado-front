@@ -1,0 +1,52 @@
+// CORES DE BACKGROUND
+.bg-gold-10 {
+  background-color: #FFD700;
+}
+
+.bg-gold-20 {
+  background-color: #ffc0cb;
+}
+
+.bg-gold-30 {
+  background-color: #ffdab9;
+}
+
+.bg-gold-40 {
+  background-color: #b8860b;
+}
+
+.bg-gold-50 {
+  background-color: #e6b800;
+}
+
+.bg-white-10 {
+ background-color: #FFFFFF;
+}
+
+.bg-white-20 {
+ background-color: #F5F5F5;
+}
+
+.bg-white-30 {
+ background-color: #F3E5AB;
+}
+
+.bg-white-40 {
+ background-color: #FAFAFA;
+}
+
+.bg-white-50 {
+ background-color: #F8F8F8;
+}
+
+.bg-white-60 {
+ background-color: #fffff0;
+}
+
+.bg-white-70 {
+ background-color: #faebd7;
+}
+
+.bg-white-80 {
+ background-color: #f0f0f0;
+}

@@ -1,0 +1,37 @@
+
+// ALINHAMENTO DE TEXTO
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+// ALINHAMENTO DE CONTEUDO
+.align-top {
+  vertical-align: top;
+}
+
+.align-middle {
+  vertical-align: middle;
+}
+
+.align-bottom {
+  vertical-align: bottom;
+}
+
+// ALINHAMENTO DE ELEMENTOS
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
