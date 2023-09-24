@@ -3,12 +3,12 @@ import '../../css/global.css';
 import '../../css/components/genericButton.css';
 import { Buttons } from "../../utils/interfaces";
 
-export default function GenericButton({ text }: Buttons) {
+export default function GenericButton({ text, type }: Buttons) {
   return (
-    <div className="bg-gold-40 containerButton">
-      <p className="text-white-20 text-lg text-center p-2 ">
+    <div>
+      <button className="bg-gold-40 text-white-20 text-lg text-center p-2 containerButton" type={type}>
         {text}
-      </p>
+      </button>
     </div>
   );
 }

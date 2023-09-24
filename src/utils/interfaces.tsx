@@ -12,10 +12,16 @@ export interface Gift {
 
 export interface Input {
   text?: string;
+  type?: string;
+  id?: string;
+  name?: string;
+  value?: any;
+  onChange?: any
 }
 
 export interface Buttons {
   text?: string;
+  type?: any
 }
 
 export interface Tables {

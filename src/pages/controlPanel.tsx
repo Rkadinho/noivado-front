@@ -15,7 +15,7 @@ export default function ControlPanel() {
       .then((guest) => setGuests(guest))
       .catch((error) => console.error(`Erro: ${error}`));
 
-      fetch('http://localhost:3000/gift/gifts')
+      fetch('http://localhost:3000/gifts/gifts')
       .then((res) => res.json())
       .then((gift) => setGifts(gift))
       .catch((error) => console.log(`Erro: ${error}`))
