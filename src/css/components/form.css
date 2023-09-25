@@ -1,0 +1,33 @@
+.containerForm {
+  width: 50%;
+  border-radius: 8px;
+  box-shadow: 1px 1px 15px #b8860b;
+  overflow-x: auto;
+}
+
+.formGuest{
+  display: flex;
+  align-items: flex-end;
+}
+
+.formGift{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+  .containerForm {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 1px 1px 15px #b8860b;
+  }
+
+  .formGuest{
+    display: grid;
+  }
+
+  .formGift{
+    display: grid;
+  }
+}
