@@ -5,3 +5,7 @@
 .font-italic {
   font-style: italic;
 }
+
+.font-secondary{
+  font-family: 'Parisienne', cursive;
+}

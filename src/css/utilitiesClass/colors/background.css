@@ -50,3 +50,13 @@
 .bg-white-80 {
  background-color: #f0f0f0;
 }
+
+.bg-image{
+  background-image: url("https://s3-alpha-sig.figma.com/img/0a2c/3227/37211aaadefe8fb00a6409d642776b45?Expires=1696809600&Signature=g9ciZaOO68YvnjMHZ801mqWdJWjVTlOmXnqPAhABfrl1anhL0p316ZwgPFtpjFaMhK8JMFFlkVBe4h7moOmcH9HAeGndAWTzWkSkyPz8mywudzMMxPTRfxOB0L0jm92R6rMwmQCar4ZTsxdi0qutZI1oFASP8O~yOg4m2IP13UdccdZvK5TG13Hj94-db-pp5ygxHIrXpwyfHk0AFtUglQ1OG1KbxbfnY5KZ8MWtJ4tfLP2GwLwgg5-xbdJ-o0mT0DAAskaemTivjErip2Z5zJnIokQBAFi5RqbZMs7BDgkzPcYy7sJVbVCg8Xicg32xnSqNw-JTSwVUQBsJeOuumw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4");
+  background-repeat: no-repeat;
+  background-size: cover ;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}

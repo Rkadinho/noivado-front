@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Home from './pages/home';
+import ListGuests from './components/list-guests/list-guests';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Home />
+    {/* <Home /> */}
+    <ListGuests />
   </React.StrictMode>
 );
 
