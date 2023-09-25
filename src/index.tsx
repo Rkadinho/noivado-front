@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Home from './pages/home';
+import ListGuests from './components/list-guests/list-guests';
 import ControlPanel from './pages/controlPanel';
 
 const root = ReactDOM.createRoot(
@@ -10,6 +11,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    {/* <Home /> */}
+    {/*<ListGuests /> */}
     <ControlPanel />
   </React.StrictMode>
 );
