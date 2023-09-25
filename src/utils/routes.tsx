@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../pages/home';
-import ListGuests from '../components/list-guests/list-guests';
+import ListGuests from '../pages/listGuests';
 import ControlPanel from '../pages/controlPanel';
 
 
