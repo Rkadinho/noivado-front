@@ -1,0 +1,20 @@
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  border-spacing: 0px;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 4px;
+  }
+}
