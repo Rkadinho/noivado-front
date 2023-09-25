@@ -1,13 +1,13 @@
 export interface Guest {
   id?: number;
   name?: string;
-  code?: string;
+  code?: string
 }
 
 export interface Gift {
   id?: number;
   name?: string;
-  chooseBy?: string;
+  choseBy?: string
 }
 
 export interface Input {
@@ -27,5 +27,6 @@ export interface Buttons {
 export interface Tables {
   titles?: any[];
   contents?: any[];
-  codes?: any[]
+  codes?: any[];
+  onDelete?: any;
 }

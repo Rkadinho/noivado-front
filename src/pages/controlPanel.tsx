@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import '../css/global.css'
 import Form from "../components/cards/form";
-import Table from "../components/tables/tablesGuests";
+import Table from "../components/tables/tables";
 import { Guest, Gift } from "../utils/interfaces";
 import { tableGuest, tabelGift } from "../utils/data";
+import '../css/pages/controlPanel.css';
 
 export default function ControlPanel() {
   const [guests, setGuests] = useState<Guest[]>([]);
@@ -23,6 +24,7 @@ export default function ControlPanel() {
 
   const handleGuests = guests.map((guest, i) => {
     return {
+      id: guest.id,
       name: guest.name,
       code: guest.code
     }
@@ -30,8 +32,9 @@ export default function ControlPanel() {
 
   const handleGifts = gifts.map((gift, i) => {
     return {
+      id: gift.id,
       name: gift.name,
-      chooseBy: gift.chooseBy
+      choseBy: gift.choseBy
     }
   })
 
@@ -40,9 +43,9 @@ export default function ControlPanel() {
       <div className="flex-center">
         <Form />
       </div>
-      <div className="flex-center flex">
+      <div className="flex-center containerTable">
         <Table titles={tableGuest} contents={handleGuests}/>
-        <Table titles={tabelGift} contents={handleGifts}/>
+        <Table titles={tabelGift} contents={handleGifts} />
       </div>
     </div>
   )

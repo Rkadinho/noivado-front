@@ -1,2 +1,2 @@
-export const tableGuest = ["nome", "codigo"];
-export const tabelGift = ["nome", "escolhido por"]
+export const tableGuest = ["id", "nome", "codigo"];
+export const tabelGift = ["id", "nome", "escolhido por"]
