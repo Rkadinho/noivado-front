@@ -1,0 +1,10 @@
+.modalContainer {
+  border-radius: 8px;
+  width: 50%;
+  box-shadow: 1px 1px 15px #b8860b;;
+}
+
+.modalIcon {
+  display: flex;
+  justify-content: end;
+}

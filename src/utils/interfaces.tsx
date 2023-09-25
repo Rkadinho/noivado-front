@@ -21,7 +21,8 @@ export interface Input {
 
 export interface Buttons {
   text?: string;
-  type?: any
+  type?: any;
+  click?: () => void;
 }
 
 export interface Tables {
@@ -29,4 +30,10 @@ export interface Tables {
   contents?: any[];
   codes?: any[];
   onDelete?: any;
+}
+
+export interface Modals {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
 }
