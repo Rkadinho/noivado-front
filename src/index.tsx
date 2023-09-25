@@ -2,18 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Home from './pages/home';
-import ListGuests from './components/list-guests/list-guests';
-import ControlPanel from './pages/controlPanel';
+import Routes from './utils/routes';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    {/* <Home /> */}
-    {/*<ListGuests /> */}
-    <ControlPanel />
+    <Routes />
   </React.StrictMode>
 );
 
