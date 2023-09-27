@@ -1,10 +1,9 @@
 import React from "react";
 import { Tables } from "../../utils/interfaces";
 import { IoIosTrash } from "react-icons/io";
-import '../../css/components/table.css'
+import '../../css/components/table.css';
 
 export default function Table ({ titles, contents }: Tables) {
-
   const handleDelete = async (id: number) => {
     try {
       const res = await fetch(`http://localhost:3000/gifts/deleteGift/${id}`, {
@@ -53,6 +52,7 @@ export default function Table ({ titles, contents }: Tables) {
                 <td className="p-4">{content.id}</td>
                 <td className="p-4">{content.name}</td>
                 <td className="p-4">{content.code || content.choseBy}</td>
+                <td className="p-4">{content?.status}</td>
                 <td className="p-4">
                   <IoIosTrash onClick={() => {
                     handleDelete(content.id); 

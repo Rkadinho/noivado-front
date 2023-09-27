@@ -26,7 +26,8 @@ export default function ControlPanel() {
     return {
       id: guest.id,
       name: guest.name,
-      code: guest.code
+      code: guest.code,
+      status: guest.status
     }
   })
 
