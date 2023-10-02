@@ -3,14 +3,14 @@ import '../../css/global.css'
 import '../../css/components/form.css';
 import GenericButton from "../buttons/genericButton";
 import GenericInput from "../inputs/genericInput";
-import { Guest } from "../../utils/interfaces";
+import { Gift, Guest } from "../../utils/interfaces";
 
 export default function Form() {
   const [newGuest, setNewGuest] = useState<Guest>({
     name: '',
     code: ''
   });
-  const [newGift, setNewGift] = useState<Guest>({
+  const [newGift, setNewGift] = useState<Gift>({
     name: ''
   });
 

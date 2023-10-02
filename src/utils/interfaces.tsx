@@ -1,13 +1,14 @@
 export interface Guest {
   id?: number;
   name?: string;
-  code?: string
+  code?: string;
+  status?: string
 }
 
 export interface Gift {
   id?: number;
   name?: string;
-  choseBy?: string
+  choseBy?: string;
 }
 
 export interface Input {
