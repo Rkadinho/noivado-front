@@ -31,7 +31,9 @@ export default function ListGuests() {
 
   const navigateRoute = (status: string) => {
     navigate(`/listGifts/${selectedGuest?.name}`);
-    updateStatus(status);
+    if(!selectedGuest?.status) {
+      updateStatus(status);
+    }
   }
 
   const statusNegative = (status: string) => {
@@ -103,9 +105,9 @@ export default function ListGuests() {
       <div className='flex-center'>
         <Modal isOpen={modalOpen} onClose={closeModal}>
           <GenericInput text="Codigo" value={enteredCode} onChange={(e: any) => setEnteredCode(e.target.value)}/>
-          <GenericButton text="OK" click={() => handleCodeVerifi()}/>
+          <GenericButton text="OK" click={() => !selectedGuest?.status ? handleCodeVerifi() : navigateRoute('')}/>
         </Modal>
-        <Modal isOpen={modalOpenCode && enteredCode === selectedGuest?.code} onClose={closeModal}>
+        <Modal isOpen={modalOpenCode && enteredCode === selectedGuest?.code && !selectedGuest.status} onClose={closeModal}>
           <div className='flex-center'>
             <GenericButton text='Aceito' click={() => navigateRoute('aceito')}/>
             <div className='m-4'>
