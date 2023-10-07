@@ -1,4 +1,4 @@
-// CORES DE TEXTO
+/*CORES DE TEXTO*/
 .text-gold-10 {
   color: #FFD700;
 }
@@ -53,4 +53,15 @@
 
 .text-white-80 {
   color: #f0f0f0;
+}
+
+.text-xl {
+  font-size: 24px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor ao passar o mouse */
+  margin-bottom: 8px;
+  transition: color 0.3s ease; /* Efeito de transição de cor */
+}
+
+.text-xl:hover {
+  color: #ffd700; /* Cor ao passar o mouse (dourado) */
 }

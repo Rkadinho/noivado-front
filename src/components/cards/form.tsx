@@ -44,6 +44,7 @@ export default function Form() {
 
       if (res.ok) {
         console.log("Convidado adicionado com sucesso!");
+        window.location.reload();
       } else {
         console.error("Erro ao adicionar convidado.");
       }
@@ -66,6 +67,7 @@ export default function Form() {
 
       if(res.ok) {
         console.log('Presente adicionado com sucesso!');
+        window.location.reload();
       } else {
         console.error('Erro ao adicionar presente.');
       }

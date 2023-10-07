@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Guest } from '../utils/interfaces';
 import '../css/global.css';
+import '../css/pages/listGuest.css';
 import Modal from '../components/modal/modal';
 import GenericButton from '../components/buttons/genericButton';
 import { useNavigate } from 'react-router-dom';
@@ -11,8 +12,10 @@ export default function ListGuests() {
   const [guests, setGuests] = useState<Guest[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenCode, setModalOpenCode] = useState(false);
+  const [modalOpenInfo, setModalOpenInfo] = useState(false);
   const [enteredCode, setEnteredCode] = useState<string>('');
   const [selectedGuest, setSelectedGuest] = useState<Guest | null>(null);
+  const [status, setStatus] = useState('');
 
   const navigate = useNavigate();
 
@@ -27,6 +30,14 @@ export default function ListGuests() {
 
   const openModalCode = () => {
     setModalOpenCode(true)
+  }
+
+  const openModalInfo = (status: string) => {
+    setModalOpenInfo(true);
+    if(modalOpenCode) {
+      closeModal()
+    }
+    setStatus(status);
   }
 
   const navigateRoute = (status: string) => {
@@ -92,13 +103,13 @@ export default function ListGuests() {
   }, []);
 
   return (
-    <div className='bg-image p-8'>
-      <div className='text-center pt-8 mt-8'>
-        <h1 className="font-secondary">Lista de Convidados</h1>
-        <h3 className='font-secondary'>Clique no seu nome</h3>
+    <div className='p-8'>
+      <div className='text-center pt-8 mt-8 bg-gold-20 containerGuest'>
+        <h1 className="text-xl">Lista de Convidados</h1>
+        <h3 className='text-xl'>Clique no seu nome</h3>
         <div className='p-4'>
           {guests.map((guest) => (
-            <p className="text-xl font-secondary" key={guest.id} onClick={() => openModal(guest)}>{guest.name}</p>
+            <p className="text-xl" key={guest.id} onClick={() => openModal(guest)}>{guest.name}</p>
           ))}
         </div>
       </div>
@@ -109,12 +120,22 @@ export default function ListGuests() {
         </Modal>
         <Modal isOpen={modalOpenCode && enteredCode === selectedGuest?.code && !selectedGuest.status} onClose={closeModal}>
           <div className='flex-center'>
-            <GenericButton text='Aceito' click={() => navigateRoute('aceito')}/>
+            <GenericButton text='Estarei Presente' click={() => openModalInfo('Estarei Presente')}/>
             <div className='m-4'>
               <GenericButton text='Náo irei, porém, mandarei o presente' 
                 click={() => navigateRoute('Náo irei, porém, mandarei o presente')}/>
             </div>
             <GenericButton text='não irei' click={() => statusNegative('Náo irei')}/>
+          </div>
+        </Modal>
+        <Modal isOpen={modalOpenInfo} onClose={closeModal}>
+          <div className='flex-center grid'>
+            <h1>Aviso!</h1>
+            <p>
+              Vai ser um prazer te receber nesse dia, 
+              mas fica ligado que, após confirmar presença a entrega do presente é obrigatória.
+            </p>
+            <GenericButton text='ENTENDI' click={() => navigateRoute(status)}/>
           </div>
         </Modal>
       </div>

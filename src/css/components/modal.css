@@ -1,7 +1,7 @@
 .modalContainer {
-  border-radius: 8px;
-  width: 50%;
-  box-shadow: 1px 1px 15px #b8860b;;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #b8860b;
+  padding: 20px;
 }
 
 .modalIcon {

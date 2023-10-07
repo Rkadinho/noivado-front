@@ -6,6 +6,7 @@
   font-style: italic;
 }
 
-.font-secondary{
-  font-family: 'Parisienne', cursive;
+.font-secondary {
+  font-family: 'Segoe UI', Arial, sans-serif; /* Escolha a fonte desejada */
+  color: #fff; /* Cor do texto */
 }
