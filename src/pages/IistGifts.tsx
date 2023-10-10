@@ -54,7 +54,7 @@ export default function ListGifts() {
 
   return(
     <div>
-      <div className='text-center pt-8 mt-8'>
+      <div className='text-center pt-8 mt-8 bg-gold-20'>
         <h1 className="font-secondary">Lista de Presentes</h1>
         <div className='p-4'>
           {gifts.map((gift) => (

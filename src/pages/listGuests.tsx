@@ -13,9 +13,11 @@ export default function ListGuests() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenCode, setModalOpenCode] = useState(false);
   const [modalOpenInfo, setModalOpenInfo] = useState(false);
+  const [modalOpenInvite, setModalOpenInvite] = useState(false);
   const [enteredCode, setEnteredCode] = useState<string>('');
   const [selectedGuest, setSelectedGuest] = useState<Guest | null>(null);
   const [status, setStatus] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   const navigate = useNavigate();
 
@@ -30,6 +32,10 @@ export default function ListGuests() {
 
   const openModalCode = () => {
     setModalOpenCode(true)
+  }
+
+  const openModalInvite = () => {
+    setModalOpenInvite(true)
   }
 
   const openModalInfo = (status: string) => {
@@ -56,11 +62,27 @@ export default function ListGuests() {
     if(selectedGuest) {
       if(enteredCode === selectedGuest.code) {
         closeModal();
-        openModalCode();
+        openModalInvite();
       } else {
         alert('Codigo incorreto. Tente novamente')
       }
     }
+  }
+
+  const renderGuests = () => {
+    const indexOfLastGuest = currentPage * 10;
+    const indexOfFirstGuest = indexOfLastGuest - 10;
+    const currentGuests = guests.slice(indexOfFirstGuest, indexOfLastGuest);
+
+    return currentGuests.map((guest) => (
+      <p className="text-xl" key={guest.id} onClick={() => openModal(guest)}>
+        {guest.name}
+      </p>
+    ));
+  }
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
   }
 
   const updateStatus = (status: string) => {
@@ -107,16 +129,33 @@ export default function ListGuests() {
       <div className='text-center pt-8 mt-8 bg-gold-20 containerGuest'>
         <h1 className="text-xl">Lista de Convidados</h1>
         <h3 className='text-xl'>Clique no seu nome</h3>
-        <div className='p-4'>
-          {guests.map((guest) => (
-            <p className="text-xl" key={guest.id} onClick={() => openModal(guest)}>{guest.name}</p>
-          ))}
-        </div>
+        <div className='p-4'>{renderGuests()}</div>
+      </div>
+      <div className='pagination'>
+        {/* Renderize a paginação aqui */}
+        {Array.from({ length: Math.ceil(guests.length / 10) }).map((_, index) => (
+          <span key={index} onClick={() => paginate(index + 1)}>
+            {index + 1}
+          </span>
+        ))}
       </div>
       <div className='flex-center'>
         <Modal isOpen={modalOpen} onClose={closeModal}>
           <GenericInput text="Codigo" value={enteredCode} onChange={(e: any) => setEnteredCode(e.target.value)}/>
           <GenericButton text="OK" click={() => !selectedGuest?.status ? handleCodeVerifi() : navigateRoute('')}/>
+        </Modal>
+        <Modal isOpen={modalOpenInvite && enteredCode === selectedGuest?.code && !selectedGuest.status} onClose={closeModal}>
+          <div>
+            <h1>Jenifer</h1>
+            <h1>&</h1>
+            <h1>Ricardo</h1>
+            <p>convidam para seu noivado que será realizado no dia</p>
+            <h1>17 | 12 | 23</h1>
+            <p>Ás 13:30 horas</p>
+            <p>ACIMA DE TUDO, PORÉM, REVISTAM-SE DO AMOR, QUE É O ELO PERFEITO</p>
+            <p>COLOSSENSES</p>
+            <p>Rua loanda, 205 - Vasco da Gama</p>
+          </div>
         </Modal>
         <Modal isOpen={modalOpenCode && enteredCode === selectedGuest?.code && !selectedGuest.status} onClose={closeModal}>
           <div className='flex-center'>
