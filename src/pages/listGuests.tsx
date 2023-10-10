@@ -11,7 +11,7 @@ import GenericInput from '../components/inputs/genericInput';
 export default function ListGuests() {
   const [guests, setGuests] = useState<Guest[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalOpenCode, setModalOpenCode] = useState(false);
+  const [modalOpenStatus, setModalOpenStatus] = useState(false);
   const [modalOpenInfo, setModalOpenInfo] = useState(false);
   const [modalOpenInvite, setModalOpenInvite] = useState(false);
   const [enteredCode, setEnteredCode] = useState<string>('');
@@ -28,10 +28,13 @@ export default function ListGuests() {
 
   const closeModal = () => {
     setModalOpen(false);
+    setModalOpenInvite(false);
+    setModalOpenStatus(false);
   }
 
-  const openModalCode = () => {
-    setModalOpenCode(true)
+  const openModalStatus = () => {
+    setModalOpenStatus(true);
+    setModalOpenInvite(false);
   }
 
   const openModalInvite = () => {
@@ -40,7 +43,7 @@ export default function ListGuests() {
 
   const openModalInfo = (status: string) => {
     setModalOpenInfo(true);
-    if(modalOpenCode) {
+    if(modalOpenStatus) {
       closeModal()
     }
     setStatus(status);
@@ -55,7 +58,7 @@ export default function ListGuests() {
 
   const statusNegative = (status: string) => {
     updateStatus(status);
-    setModalOpenCode(false);
+    setModalOpenStatus(false);
   }
 
   const handleCodeVerifi = () => {
@@ -70,8 +73,8 @@ export default function ListGuests() {
   }
 
   const renderGuests = () => {
-    const indexOfLastGuest = currentPage * 10;
-    const indexOfFirstGuest = indexOfLastGuest - 10;
+    const indexOfLastGuest = currentPage * 8;
+    const indexOfFirstGuest = indexOfLastGuest - 8;
     const currentGuests = guests.slice(indexOfFirstGuest, indexOfLastGuest);
 
     return currentGuests.map((guest) => (
@@ -125,40 +128,40 @@ export default function ListGuests() {
   }, []);
 
   return (
-    <div className='p-8'>
-      <div className='text-center pt-8 mt-8 bg-gold-20 containerGuest'>
-        <h1 className="text-xl">Lista de Convidados</h1>
-        <h3 className='text-xl'>Clique no seu nome</h3>
-        <div className='p-4'>{renderGuests()}</div>
-      </div>
-      <div className='pagination'>
-        {/* Renderize a paginação aqui */}
-        {Array.from({ length: Math.ceil(guests.length / 10) }).map((_, index) => (
-          <span key={index} onClick={() => paginate(index + 1)}>
+    <div>
+      <div className='text-center'>
+        <h1 className="text-gold-40">Lista de Convidados</h1>
+        <h3 className='text-xl text-gold-40 font-secondary'>Clique no seu nome se estiver na lista</h3>
+        <div className='text-gold-40  p-4 font-secondary'>{renderGuests()}</div>
+        <div className='text-white-70 p-4 font-secondary pagination '>
+        {Array.from({ length: Math.ceil(guests.length / 8) }).map((_, index) => (
+          <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
             {index + 1}
           </span>
         ))}
       </div>
-      <div className='flex-center'>
+      </div>
+      <div className='flex-center modal'>
         <Modal isOpen={modalOpen} onClose={closeModal}>
           <GenericInput text="Codigo" value={enteredCode} onChange={(e: any) => setEnteredCode(e.target.value)}/>
-          <GenericButton text="OK" click={() => !selectedGuest?.status ? handleCodeVerifi() : navigateRoute('')}/>
+          <GenericButton text="OK" click={() => handleCodeVerifi()}/>
         </Modal>
-        <Modal isOpen={modalOpenInvite && enteredCode === selectedGuest?.code && !selectedGuest.status} onClose={closeModal}>
+        <Modal isOpen={modalOpenInvite} onClose={closeModal}>
           <div>
             <h1>Jenifer</h1>
             <h1>&</h1>
             <h1>Ricardo</h1>
-            <p>convidam para seu noivado que será realizado no dia</p>
+            <p className='font-secondary text-xl'>Convidam Para Seu Noivado Que Será Realizado No Dia</p>
             <h1>17 | 12 | 23</h1>
             <p>Ás 13:30 horas</p>
-            <p>ACIMA DE TUDO, PORÉM, REVISTAM-SE DO AMOR, QUE É O ELO PERFEITO</p>
-            <p>COLOSSENSES</p>
+            <p className='font-secondary'>ACIMA DE TUDO, PORÉM, REVISTAM-SE DO AMOR, QUE É O ELO PERFEITO</p>
+            <p className='font-secondary'>COLOSSENSES</p>
             <p>Rua loanda, 205 - Vasco da Gama</p>
+            <GenericButton text='ENTENDI' click={() => openModalStatus()}/>
           </div>
         </Modal>
-        <Modal isOpen={modalOpenCode && enteredCode === selectedGuest?.code && !selectedGuest.status} onClose={closeModal}>
-          <div className='flex-center'>
+        <Modal isOpen={modalOpenStatus && enteredCode === selectedGuest?.code && !selectedGuest.status} onClose={closeModal}>
+          <div className='flex-center containerStatus'>
             <GenericButton text='Estarei Presente' click={() => openModalInfo('Estarei Presente')}/>
             <div className='m-4'>
               <GenericButton text='Náo irei, porém, mandarei o presente' 

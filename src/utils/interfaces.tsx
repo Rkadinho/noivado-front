@@ -38,3 +38,9 @@ export interface Modals {
   onClose: () => void;
   children: React.ReactNode;
 }
+
+export interface ModalOpen {
+  open: boolean;
+  close: () => void;
+  click: () => void;
+}

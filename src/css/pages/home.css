@@ -27,7 +27,6 @@
   position: absolute;
   bottom: 0;
   top: 8rem;
-  box-shadow: 6px 6px 9px black;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   opacity: 0.5;
 }
@@ -35,4 +34,7 @@
 .button{
   position: absolute;
   bottom: 5rem;
+}
+
+@media (max-width: 768px) {
 }

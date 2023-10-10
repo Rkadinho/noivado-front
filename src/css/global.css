@@ -5,4 +5,13 @@
 @import './utilitiesClass/fonts';
 @import './utilitiesClass/textDecorations';
 
-@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Great+Vibes&display=swap');
+
+p, span {
+  font-family: 'Great Vibes', cursive;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Great Vibes', cursive;
+}

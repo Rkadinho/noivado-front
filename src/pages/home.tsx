@@ -13,7 +13,7 @@ export default function Home() {
   }
 
   return(
-    <div className="">
+    <div className="containerHome">
       <div className="background"></div>
       <div className="flex-center">
         <div className="text-center font-secondary photo"></div>

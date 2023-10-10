@@ -1,7 +1,16 @@
-.containerGuest {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+.numbers {
+  border-radius: 8px;
+}
+
+.modal {
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0rem;
+}
+
+@media (max-width: 768px) {
+  .containerStatus {
+    display: grid
+  }
 }

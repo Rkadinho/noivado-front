@@ -9,8 +9,8 @@ export default function Modal({ isOpen, onClose, children }: Modals) {
   };
 
   return isOpen ? (
-      <div className="bg-white-30 text-center pb-8 modalContainer">
-        <div onClick={closeModal} className="p-2 modalIcon">
+      <div className="bg-gold-40 text-white-10 text-center modalContainer">
+        <div onClick={closeModal} className="modalIcon">
           <IoIosClose />
         </div>
         {children}
