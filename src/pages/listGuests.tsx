@@ -35,6 +35,9 @@ export default function ListGuests() {
   const openModalStatus = () => {
     setModalOpenStatus(true);
     setModalOpenInvite(false);
+    if(selectedGuest?.status) {
+      setModalOpenInfo(true);
+    }
   }
 
   const openModalInvite = () => {
@@ -75,8 +78,13 @@ export default function ListGuests() {
   const renderGuests = () => {
     const indexOfLastGuest = currentPage * 8;
     const indexOfFirstGuest = indexOfLastGuest - 8;
-    const currentGuests = guests.slice(indexOfFirstGuest, indexOfLastGuest);
-
+    let alphabeticGuest = guests.sort((a, b) => {
+      if (a.name && b.name) {
+        return a.name.localeCompare(b.name);
+      }
+      return 0;
+    });
+    const currentGuests = alphabeticGuest.slice(indexOfFirstGuest, indexOfLastGuest);
     return currentGuests.map((guest) => (
       <p className="text-xl" key={guest.id} onClick={() => openModal(guest)}>
         {guest.name}
@@ -143,7 +151,9 @@ export default function ListGuests() {
       </div>
       <div className='flex-center modal'>
         <Modal isOpen={modalOpen} onClose={closeModal}>
-          <GenericInput text="Codigo" value={enteredCode} onChange={(e: any) => setEnteredCode(e.target.value)}/>
+          <div className='mb-2'>
+            <GenericInput text="Codigo" value={enteredCode} onChange={(e: any) => setEnteredCode(e.target.value)}/>
+          </div>
           <GenericButton text="OK" click={() => handleCodeVerifi()}/>
         </Modal>
         <Modal isOpen={modalOpenInvite} onClose={closeModal}>
@@ -170,10 +180,10 @@ export default function ListGuests() {
             <GenericButton text='não irei' click={() => statusNegative('Náo irei')}/>
           </div>
         </Modal>
-        <Modal isOpen={modalOpenInfo} onClose={closeModal}>
+        <Modal isOpen={modalOpenInfo } onClose={closeModal}>
           <div className='flex-center grid'>
             <h1>Aviso!</h1>
-            <p>
+            <p className='font-secondary'>
               Vai ser um prazer te receber nesse dia, 
               mas fica ligado que, após confirmar presença a entrega do presente é obrigatória.
             </p>

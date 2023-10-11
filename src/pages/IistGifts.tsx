@@ -9,8 +9,37 @@ export default function ListGifts() {
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1)
 
   const { guestName } = useParams();
+
+  const renderGifts = () => {
+    const indexOfLastGifts = currentPage * 8;
+    const indexOFFirtsGifts = indexOfLastGifts - 8;
+    let alphabeticGift = gifts.sort((a,b) => {
+      if(a.name && b.name) {
+        return a.name.localeCompare(b.name);
+      }
+      return 0;
+    });
+    const currentGifts = alphabeticGift.slice(indexOFFirtsGifts, indexOfLastGifts);
+    return currentGifts.map((gift) => (
+      <p 
+        className={`text-xl ${gift.choseBy ? 'chosen' : ''}`} 
+        key={gift.id}
+        onClick={() => {
+          if(!gift.choseBy && gift.id !== undefined) {
+            updateChoseBy(gift.id);
+          }
+          if (gift.choseBy) {
+            openModal();
+          }
+        }}
+         >
+          {gift.name}
+      </p>
+    ))
+  }
 
   const updateChoseBy = (giftId: any) => {
     fetch('http://localhost:3000/gifts/toChose', {
@@ -57,16 +86,7 @@ export default function ListGifts() {
       <div className='text-center pt-8 mt-8 bg-gold-20'>
         <h1 className="font-secondary">Lista de Presentes</h1>
         <div className='p-4'>
-          {gifts.map((gift) => (
-              <p className={`text-xl font-secondary ${gift.choseBy ? 'chosen' : ''}`} key={gift.id} onClick={() => {
-                if (!gift.choseBy && gift.id !== undefined) {
-                  updateChoseBy(gift.id);
-                } 
-                if (gift.choseBy) {
-                  openModal();
-                }
-              }}>{gift.name}</p>
-          ))}
+          {renderGifts()}
         </div>
       </div>
       <Modal isOpen={modalOpen} onClose={closeModal}>

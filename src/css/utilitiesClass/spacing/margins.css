@@ -18,6 +18,10 @@
   margin-bottom: 2rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem
+}
+
 .mr-8 {
   margin-right: 2rem;
 }
