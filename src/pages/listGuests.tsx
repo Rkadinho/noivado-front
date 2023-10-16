@@ -14,6 +14,7 @@ export default function ListGuests() {
   const [modalOpenStatus, setModalOpenStatus] = useState(false);
   const [modalOpenInfo, setModalOpenInfo] = useState(false);
   const [modalOpenInvite, setModalOpenInvite] = useState(false);
+  const [modalOpenInstruction, setModalOpenInstruction] = useState(false);
   const [enteredCode, setEnteredCode] = useState<string>('');
   const [selectedGuest, setSelectedGuest] = useState<Guest | null>(null);
   const [status, setStatus] = useState('');
@@ -30,6 +31,8 @@ export default function ListGuests() {
     setModalOpen(false);
     setModalOpenInvite(false);
     setModalOpenStatus(false);
+    setModalOpenInfo(false);
+    setModalOpenInstruction(false);
   }
 
   const openModalStatus = () => {
@@ -46,10 +49,11 @@ export default function ListGuests() {
 
   const openModalInfo = (status: string) => {
     setModalOpenInfo(true);
-    if(modalOpenStatus) {
-      closeModal()
-    }
     setStatus(status);
+  }
+
+  const openModalInstruction = () => {
+    setModalOpenInstruction(true);
   }
 
   const navigateRoute = (status: string) => {
@@ -104,7 +108,7 @@ export default function ListGuests() {
       },
       body: JSON.stringify({
         name: selectedGuest?.name,
-        status
+        status: status
       })
     })
       .then((res) => {
@@ -180,13 +184,40 @@ export default function ListGuests() {
             <GenericButton text='não irei' click={() => statusNegative('Náo irei')}/>
           </div>
         </Modal>
-        <Modal isOpen={modalOpenInfo } onClose={closeModal}>
+        <Modal isOpen={modalOpenInfo} onClose={closeModal}>
           <div className='flex-center grid'>
             <h1>Aviso!</h1>
             <p className='font-secondary'>
               Vai ser um prazer te receber nesse dia, 
               mas fica ligado que, após confirmar presença a entrega do presente é obrigatória.
             </p>
+            <GenericButton text='ENTENDI' click={() => openModalInstruction()}/>
+          </div>
+        </Modal>
+        <Modal isOpen={modalOpenInstruction} onClose={closeModal}>
+          <div className='flex-center grid'>
+            <h1>Manual do convidado</h1>
+            <ol className='font-secondary'>
+              <li>
+                Vai ser um prazer receber você no nosso dia especial, 
+                mas lembrando que, de branco só a NOIVA
+              </li>
+              <li>
+                Não vejo a hora de celebramos juntos essa nova etapa, mas fique
+                atento na hora de confirmar sua presença e escolha o presente. Após
+                escolher o presente a entrega do mesmo será obriga
+              </li>
+              <li>
+                Em caso de alguma dúvida, ente em contato com os noivos para esclarecimento,
+                para não haver nenhuma dificuldade que te impeça de estar ao nosso lado
+                nesse grande dia
+              </li>
+              <li>
+                Contato dos noivos:
+                Jenifer: 81 996513553
+                Ricardo: 81 994205468
+              </li>
+            </ol>
             <GenericButton text='ENTENDI' click={() => navigateRoute(status)}/>
           </div>
         </Modal>

@@ -46,5 +46,6 @@ export interface ModalOpen {
 }
 
 export interface Pagination {
-  props: any[]
+  props: any[];
+  click: () => void
 }

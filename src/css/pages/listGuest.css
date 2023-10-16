@@ -9,6 +9,10 @@
   bottom: 0rem;
 }
 
+li{
+  margin-bottom: 1rem
+}
+
 @media (max-width: 768px) {
   .containerStatus {
     display: grid

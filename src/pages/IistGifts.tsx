@@ -9,6 +9,7 @@ export default function ListGifts() {
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpenConfirm, setModalOpenConfirm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1)
 
   const { guestName } = useParams();
@@ -29,7 +30,8 @@ export default function ListGifts() {
         key={gift.id}
         onClick={() => {
           if(!gift.choseBy && gift.id !== undefined) {
-            updateChoseBy(gift.id);
+            openModalConfirm();
+            setSelectedGift(gift);
           }
           if (gift.choseBy) {
             openModal();
@@ -59,6 +61,8 @@ export default function ListGifts() {
         return res.json();
       })
       .catch((error) => console.error(`Erro na chamada da api ${error}`))
+      closeModal();
+      window.location.reload();
   }
 
   const openModal = () => {
@@ -67,6 +71,15 @@ export default function ListGifts() {
 
   const closeModal = () => {
     setModalOpen(false);
+    setModalOpenConfirm(false);
+  }
+
+  const openModalConfirm = () => {
+    setModalOpenConfirm(true);
+  }
+
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
   }
 
   useEffect(() => {
@@ -83,16 +96,33 @@ export default function ListGifts() {
 
   return(
     <div>
-      <div className='text-center pt-8 mt-8 bg-gold-20'>
-        <h1 className="font-secondary">Lista de Presentes</h1>
-        <div className='p-4'>
-          {renderGifts()}
+      <div className='text-center pt-8 mt-8 text-gold-40'>
+        <h1>Lista de Presentes</h1>
+        <div>
+          <p className='font-secondary'>{renderGifts()}</p>
+        </div>
+        <div className='text-white-70 p-4 font-secondary pagination '>
+        {Array.from({ length: Math.ceil(gifts.length / 8) }).map((_, index) => (
+          <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
+            {index + 1}
+          </span>
+        ))}
         </div>
       </div>
-      <Modal isOpen={modalOpen} onClose={closeModal}>
-        <p>Este presente ja foi escolhido, tente outro!</p>
-        <GenericButton text='OK' click={closeModal}/>
-      </Modal>
+      <div className='flex-center'>
+        <Modal isOpen={modalOpen} onClose={closeModal}>
+          <p>Este presente ja foi escolhido, tente outro!</p>
+          <GenericButton text='OK' click={closeModal}/>
+        </Modal>
+        <Modal isOpen={modalOpenConfirm} onClose={closeModal}>
+          <p className='text-xl'>Atenção!</p>
+          <p className='font-secondary'>Tem certeza que quer escolher este presente {selectedGift?.name}?</p>
+          <div className='mb-8'>
+            <GenericButton text='Sim' click={() => updateChoseBy(selectedGift?.id)}/>
+          </div>
+          <GenericButton text='Não' click={() => closeModal()}/>
+        </Modal>
+      </div>
     </div>
   )
 }
