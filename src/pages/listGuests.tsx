@@ -15,6 +15,7 @@ export default function ListGuests() {
   const [modalOpenInfo, setModalOpenInfo] = useState(false);
   const [modalOpenInvite, setModalOpenInvite] = useState(false);
   const [modalOpenInstruction, setModalOpenInstruction] = useState(false);
+  const [modalOpenErroCode, setModalOpenErroCode] = useState(false);
   const [enteredCode, setEnteredCode] = useState<string>('');
   const [selectedGuest, setSelectedGuest] = useState<Guest | null>(null);
   const [status, setStatus] = useState('');
@@ -33,6 +34,7 @@ export default function ListGuests() {
     setModalOpenStatus(false);
     setModalOpenInfo(false);
     setModalOpenInstruction(false);
+    setModalOpenErroCode(false);
   }
 
   const openModalStatus = () => {
@@ -56,8 +58,12 @@ export default function ListGuests() {
     setModalOpenInstruction(true);
   }
 
+  const openModalOpenErroCode = () => {
+    setModalOpenErroCode(true);
+  }
+
   const navigateRoute = (status: string) => {
-    navigate(`/listGifts/${selectedGuest?.name}`);
+    navigate(`/listGifts/${selectedGuest?.name}/${enteredCode}`);
     if(!selectedGuest?.status) {
       updateStatus(status);
     }
@@ -74,7 +80,8 @@ export default function ListGuests() {
         closeModal();
         openModalInvite();
       } else {
-        alert('Codigo incorreto. Tente novamente')
+        closeModal();
+        openModalOpenErroCode();
       }
     }
   }
@@ -90,7 +97,7 @@ export default function ListGuests() {
     });
     const currentGuests = alphabeticGuest.slice(indexOfFirstGuest, indexOfLastGuest);
     return currentGuests.map((guest) => (
-      <p className="text-xl" key={guest.id} onClick={() => openModal(guest)}>
+      <p className="text-xl font-secondary" key={guest.id} onClick={() => openModal(guest)}>
         {guest.name}
       </p>
     ));
@@ -169,8 +176,8 @@ export default function ListGuests() {
             <h1>17 | 12 | 23</h1>
             <p>Ás 13:30 horas</p>
             <p className='font-secondary'>ACIMA DE TUDO, PORÉM, REVISTAM-SE DO AMOR, QUE É O ELO PERFEITO</p>
-            <p className='font-secondary'>COLOSSENSES</p>
-            <p>Rua loanda, 205 - Vasco da Gama</p>
+            <p className='font-secondary'>COLOSSENSES 3:14</p>
+            <p className='font-secondary'>Rua loanda, 205 - Vasco da Gama</p>
             <GenericButton text='ENTENDI' click={() => openModalStatus()}/>
           </div>
         </Modal>
@@ -200,7 +207,7 @@ export default function ListGuests() {
             <ol className='font-secondary'>
               <li>
                 Vai ser um prazer receber você no nosso dia especial, 
-                mas lembrando que, de branco só a NOIVA
+                mas lembrando que, de branco só os NOIVOS
               </li>
               <li>
                 Não vejo a hora de celebramos juntos essa nova etapa, mas fique
@@ -214,12 +221,18 @@ export default function ListGuests() {
               </li>
               <li>
                 Contato dos noivos:
+                <br/>
                 Jenifer: 81 996513553
+                <br/>
                 Ricardo: 81 994205468
               </li>
             </ol>
             <GenericButton text='ENTENDI' click={() => navigateRoute(status)}/>
           </div>
+        </Modal>
+        <Modal isOpen={modalOpenErroCode} onClose={closeModal}>
+          <p className='font-secondary'>Codigo incorreto, tente novamente</p>
+          <GenericButton text='FECHAR' click={() => closeModal()}/>
         </Modal>
       </div>
     </div>

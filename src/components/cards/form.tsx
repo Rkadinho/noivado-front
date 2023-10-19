@@ -81,7 +81,7 @@ export default function Form() {
       <div className="p-8">
         <form onSubmit={handleSubmitGuest}>
           <div className="flex pb-8 formGuest">
-            <div className="mr-8">
+            <div className="mr-8 marginMobile">
               <GenericInput 
                 text="Convidado" 
                 type="text" 
@@ -90,7 +90,7 @@ export default function Form() {
                 value={newGuest.name} 
                 onChange={handleChangeGuest}/>
             </div>
-            <div className="mr-8">
+            <div className="mr-8 marginMobile">
               <GenericInput 
                 text="Codigo" 
                 type="text" 
@@ -104,7 +104,7 @@ export default function Form() {
         </form>
         <form onSubmit={handleSubmitGift}>
           <div className="flex mb-8 formGift">
-            <div className="mr-8">
+            <div className="mr-8 marginMobile">
               <GenericInput 
                 text="Presente"
                 type="text"

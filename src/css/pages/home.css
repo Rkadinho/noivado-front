@@ -36,5 +36,30 @@
   bottom: 5rem;
 }
 
+.textHome {
+  position: absolute;
+  top: 0;
+}
+
+.textTitle {
+  font-size: 3rem
+}
+
+.textSubtitle {
+  font-size: 1.5rem;
+  
+}
+
 @media (max-width: 768px) {
+  .containerHome{
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .photo {
+    height: 42vh;
+    width: 42vh;
+    position: absolute;
+    top: 20rem;
+  }
 }

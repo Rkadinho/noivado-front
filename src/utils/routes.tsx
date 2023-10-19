@@ -4,6 +4,7 @@ import Home from '../pages/home';
 import ListGuests from '../pages/listGuests';
 import ControlPanel from '../pages/controlPanel';
 import ListGifts from '../pages/IistGifts';
+import LoginAdmin from '../pages/loginAdm';
 
 
 const RoutesPages: React.FC = () => {
@@ -12,8 +13,9 @@ const RoutesPages: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/listGuests" element={<ListGuests/>} />
+        <Route path="/listGifts/:guestName/:code" element={<ListGifts />} />
+        <Route path="/loginAdmin" element={<LoginAdmin />} />
         <Route path="/controlPanel" element={<ControlPanel />} />
-        <Route path="/listGifts/:guestName" element={<ListGifts />} />
       </Routes>
     </Router>
   );

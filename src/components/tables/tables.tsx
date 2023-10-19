@@ -28,6 +28,7 @@ export default function Table ({ titles, contents }: Tables) {
 
       if(res.ok) {
         console.log('Convidado excluido com sucesso!');
+        window.location.reload();
       } else {
         console.error('Erro ao excluir convidado.');
       }
@@ -42,18 +43,18 @@ export default function Table ({ titles, contents }: Tables) {
         <thead className="bg-gold-40 text-white-10 text-uppercase">
             <tr>
               {titles?.map((title, i) => (
-                <th key={i} className="p-4">{title}</th>
+                <th key={i} className="p-2">{title}</th>
               ))}
             </tr>
           </thead>
           <tbody className="bg-white-20 text-center text-capitalize">
             {contents?.map((content, i) => (
               <tr key={i}>
-                <td className="p-4">{content.id}</td>
-                <td className="p-4">{content.name}</td>
-                <td className="p-4">{content.code || content.choseBy}</td>
-                <td className="p-4">{content?.status}</td>
-                <td className="p-4">
+                <td className="p-2">{content.id}</td>
+                <td className="p-2">{content.name}</td>
+                <td className="p-2">{content.code || content.choseBy}</td>
+                <td className="p-2">{content?.status}</td>
+                <td className="p-2">
                   <IoIosTrash onClick={() => {
                     handleDelete(content.id); 
                     handleDeletew(content.id)
