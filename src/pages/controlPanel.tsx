@@ -5,10 +5,23 @@ import Table from "../components/tables/tables";
 import { Guest, Gift } from "../utils/interfaces";
 import { tableGuest, tabelGift } from "../utils/data";
 import '../css/pages/controlPanel.css';
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ControlPanel() {
   const [guests, setGuests] = useState<Guest[]>([]);
   const [gifts, setGifts] = useState<Gift[]>([]);
+
+  const { guestName, code } = useParams();
+
+  const navigate = useNavigate()
+
+  const matchingCode = guests.find((guest) => {
+    return guest.code === code;
+  })
+
+  const validAdmin = guests.find((guest) => {
+    return guest.name === guestName
+  })
 
   useEffect(() => {
     fetch('http://localhost:3000/guests/guests')
@@ -40,14 +53,25 @@ export default function ControlPanel() {
   })
 
   return(
-    <div className="p-8">
-      <div className="flex-center">
-        <Form />
+    <div>
+      {matchingCode?.name === guestName && validAdmin?.name === 'admin' ? (
+        <div className="p-8">
+          <div className="flex-center">
+            <Form />
+          </div>
+          <div className="flex-center containerTable">
+            <Table titles={tableGuest} contents={handleGuests}/>
+            <Table titles={tabelGift} contents={handleGifts} />
+          </div>
+        </div>
+      ) : (
+        <div className='flex-center'>
+        <div className='grid'>
+          <h1 className='font-secondary'>Pagina não existe</h1>
+          <h1 className='font-secondary' onClick={() => navigate('/loginAdmin')}>voltar</h1>
+        </div>
       </div>
-      <div className="flex-center containerTable">
-        <Table titles={tableGuest} contents={handleGuests}/>
-        <Table titles={tabelGift} contents={handleGifts} />
-      </div>
+      )}
     </div>
   )
 }

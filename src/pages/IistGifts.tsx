@@ -172,7 +172,7 @@ export default function ListGifts() {
 
   return(
    <div>
-    {checkGuestName && matchingCode?.name === guestName? (
+    {checkGuestName && matchingCode?.name === guestName ? (
        <div>
        <div className='text-center pt-8 mt-8 text-gold-40'>
          <h1>Lista de Presentes</h1>

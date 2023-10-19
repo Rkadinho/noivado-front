@@ -5,23 +5,29 @@ import GenericButton from "../components/buttons/genericButton";
 import { useNavigate } from "react-router-dom";
 import GenericInput from "../components/inputs/genericInput";
 import { Guest } from "../utils/interfaces";
+import Modal from "../components/modal/modal";
 
 export default function LoginAdmin() {
   const [guests, setGuests] = useState<Guest[]>([]);
   const [login, setLogin] = useState('');
   const [code, setCode] = useState('');
+  const [openModal, setOpenModal] = useState(false);
 
   const navigate = useNavigate();
-
-  const navigateRoute = () => {
-    navigate('/listGuests');
-  }
 
   const matchingCode = guests.find((guest) => guest.code === code)
 
   const handleLogin = () => {
     if (login === 'admin' && matchingCode && matchingCode.name === 'admin') {
-      navigate('/controlPanel')
+      navigate(`/controlPanel/${login}/${code}`)
+    }
+    setOpenModal(true)
+  }
+
+  const modal = () => {
+    setOpenModal(true)
+    if(openModal) {
+      setOpenModal(false)
     }
   }
 
@@ -48,11 +54,12 @@ export default function LoginAdmin() {
           <GenericButton text="Entrar" click={() => handleLogin()}/>
         </div>
       </div>
-      <div>
-        {/* <Modal>
+      <div className="flex-center">
+        <Modal isOpen={openModal} onClose={modal}>
           <h1>Aviso!</h1>
-          <p>Usuario ou senha incorreta</p>
-        </Modal> */}
+          <p className="font-secondary">Usuario ou senha incorreta</p>
+          <GenericButton text="Entendi" click={() => modal()}/>
+        </Modal>
       </div>
     </div>
   );

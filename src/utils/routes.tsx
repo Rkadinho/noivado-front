@@ -15,7 +15,7 @@ const RoutesPages: React.FC = () => {
         <Route path="/listGuests" element={<ListGuests/>} />
         <Route path="/listGifts/:guestName/:code" element={<ListGifts />} />
         <Route path="/loginAdmin" element={<LoginAdmin />} />
-        <Route path="/controlPanel" element={<ControlPanel />} />
+        <Route path="/controlPanel/:guestName/:code" element={<ControlPanel />} />
       </Routes>
     </Router>
   );
