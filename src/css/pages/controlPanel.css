@@ -1,3 +1,20 @@
+.react-tabs__tab{
+  background: white;
+  border-radius: 8px;
+  color: #b8860b;
+  border: 1px solid #b8860b !important;
+  margin-right: 1rem;
+  text-align: center;
+}
+
+.react-tabs__tab--selected {
+  background: #b8860b !important;
+  border-radius: 8px !important;
+  color: white !important;
+  margin-right: 1rem;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .containerTable{
     display: grid;

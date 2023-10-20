@@ -89,7 +89,9 @@ export default function ListGuests() {
   const renderGuests = () => {
     const indexOfLastGuest = currentPage * 8;
     const indexOfFirstGuest = indexOfLastGuest - 8;
-    let alphabeticGuest = guests.sort((a, b) => {
+    let alphabeticGuest = guests
+    .filter(guest => guest.name !== 'admin')
+    .sort((a, b) => {
       if (a.name && b.name) {
         return a.name.localeCompare(b.name);
       }

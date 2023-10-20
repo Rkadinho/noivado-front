@@ -3,9 +3,11 @@ import '../css/global.css'
 import Form from "../components/cards/form";
 import Table from "../components/tables/tables";
 import { Guest, Gift } from "../utils/interfaces";
-import { tableGuest, tabelGift } from "../utils/data";
+import { tableGuest, tableGift } from "../utils/data";
 import '../css/pages/controlPanel.css';
 import { useNavigate, useParams } from "react-router-dom";
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css'
 
 export default function ControlPanel() {
   const [guests, setGuests] = useState<Guest[]>([]);
@@ -55,14 +57,26 @@ export default function ControlPanel() {
   return(
     <div>
       {matchingCode?.name === guestName && validAdmin?.name === 'admin' ? (
-        <div className="p-8">
+        <div className="p-4">
           <div className="flex-center">
             <Form />
           </div>
-          <div className="flex-center containerTable">
-            <Table titles={tableGuest} contents={handleGuests}/>
-            <Table titles={tabelGift} contents={handleGifts} />
-          </div>
+          <Tabs>
+            <TabList>
+              <div className="flex-center p-2">
+                <Tab>Tabela de Convidados</Tab>
+                <Tab>Tabela de Presentes</Tab>
+              </div>
+            </TabList>
+
+            <TabPanel>
+              <Table titles={tableGuest} contents={handleGuests} />
+            </TabPanel>
+
+            <TabPanel>
+              <Table titles={tableGift} contents={handleGifts} />
+            </TabPanel>
+          </Tabs>
         </div>
       ) : (
         <div className='flex-center'>

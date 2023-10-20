@@ -77,7 +77,7 @@ export default function Form() {
   }
 
   return(
-    <div className="bg-white-20 flex-center containerForm">
+    <div className="bg-gold-40 text-white-10 flex-center containerForm">
       <div className="p-8">
         <form onSubmit={handleSubmitGuest}>
           <div className="flex pb-8 formGuest">

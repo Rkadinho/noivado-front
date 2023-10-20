@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modals } from "../../utils/interfaces";
 import { IoIosClose } from "react-icons/io";
 import '../../css/components/modal.css';

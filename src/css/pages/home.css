@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   height: 100vh;
-  filter: blur(5px);
+  filter: blur(1px);
 }
 
 .container {
@@ -22,13 +22,13 @@
   background-position: center;
   margin: 0;
   padding: 0;
-  height: 70vh;
-  width: 70vh;
+  height: 50%;
+  width: 35%;
   position: absolute;
   bottom: 0;
-  top: 8rem;
+  top: 18rem;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .button{
@@ -47,19 +47,58 @@
 
 .textSubtitle {
   font-size: 1.5rem;
-  
+}
+
+.border {
+  background-image: url("../../img/ajuste.png");
+  background-repeat: no-repeat;
+  background-size: cover ;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  width: 81%;
+  height: 73%;
+  position: absolute;
+  bottom: 0;
+  top: 15rem;
+  transform: rotate(-14deg);
 }
 
 @media (max-width: 768px) {
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+
+  .textSubtitle {
+    font-size: 1.2rem;
+  }
+
   .containerHome{
-    max-width: 100%;
+    width: 100%;
     padding: 0;
   }
 
   .photo {
-    height: 42vh;
-    width: 42vh;
+    height: 35%;
+    width: 70%;
     position: absolute;
-    top: 20rem;
+  }
+
+  .border {
+    width: 83%;
+    height: 73%;
+    transform: rotate(-6deg);
+    top: 20.5%
+  }
+
+  .button{
+    position: absolute;
+    bottom: 10rem;
   }
 }
