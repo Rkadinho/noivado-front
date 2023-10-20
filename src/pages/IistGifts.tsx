@@ -78,8 +78,10 @@ export default function ListGifts() {
     ))
   }
 
+  const URL_ORIGIN = process.env.ORIGIN
+
   const updateChoseBy = (giftId: any) => {
-    fetch('http://localhost:3000/gifts/toChose', {
+    fetch(`${URL_ORIGIN}gifts/toChose`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -101,7 +103,7 @@ export default function ListGifts() {
   }
 
   const unselectGift = (gift: any) => {
-      fetch('http://localhost:3000/gifts/unselect', {
+      fetch(`${URL_ORIGIN}gifts/unselect`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -149,7 +151,7 @@ export default function ListGifts() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:3000/guests/guests')
+    fetch(`${URL_ORIGIN}guests/guests`)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Erro ao buscar os convidados');
@@ -159,7 +161,7 @@ export default function ListGifts() {
     .then((data) => setGuests(data))
     .catch((error) => console.error('Erro na chamada à API:', error));
 
-    fetch('http://localhost:3000/gifts/gifts')
+    fetch('${URL_ORIGIN}gifts/gifts')
       .then((res) => {
         if(!res.ok) {
           console.log('Erro ao buscar presentes');

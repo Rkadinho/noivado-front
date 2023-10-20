@@ -31,8 +31,10 @@ export default function LoginAdmin() {
     }
   }
 
+  const URL_ORIGIN = process.env.ORIGIN;
+
   useEffect(() => {
-    fetch('http://localhost:3000/guests/guests')
+    fetch(`${URL_ORIGIN}guests/guests`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro ao buscar os convidados');

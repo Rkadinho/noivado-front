@@ -25,13 +25,15 @@ export default function ControlPanel() {
     return guest.name === guestName
   })
 
+  const URL_ORIGIN = process.env.ORIGIN
+
   useEffect(() => {
-    fetch('http://localhost:3000/guests/guests')
+    fetch(`${URL_ORIGIN}guests/guests`)
       .then((res) => res.json())
       .then((guest) => setGuests(guest))
       .catch((error) => console.error(`Erro: ${error}`));
 
-      fetch('http://localhost:3000/gifts/gifts')
+      fetch(`${URL_ORIGIN}gifts/gifts`)
       .then((res) => res.json())
       .then((gift) => setGifts(gift))
       .catch((error) => console.log(`Erro: ${error}`))

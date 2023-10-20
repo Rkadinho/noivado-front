@@ -14,6 +14,8 @@ export default function Form() {
     name: ''
   });
 
+  const URL_ORIGIN = process.env.ORIGIN;
+
   const handleChangeGuest = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setNewGuest({
@@ -34,7 +36,7 @@ export default function Form() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3000/guests/addGuest", {
+      const res = await fetch(`${URL_ORIGIN}guests/addGuest`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +59,7 @@ export default function Form() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:3000/Gifts/addGift', {
+      const res = await fetch(`${URL_ORIGIN}Gifts/addGift`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

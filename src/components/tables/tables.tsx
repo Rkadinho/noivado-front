@@ -4,9 +4,12 @@ import { IoIosTrash } from "react-icons/io";
 import '../../css/components/table.css';
 
 export default function Table ({ titles, contents }: Tables) {
+
+  const URL_ORIGIN = process.env.ORIGIN
+
   const handleDelete = async (id: number) => {
     try {
-      const res = await fetch(`http://localhost:3000/gifts/deleteGift/${id}`, {
+      const res = await fetch(`${URL_ORIGIN}gifts/deleteGift/${id}`, {
        method: 'DELETE' 
       });
 
@@ -22,7 +25,7 @@ export default function Table ({ titles, contents }: Tables) {
 
   const handleDeletew = async (id: number) => {
     try {
-      const res = await fetch(`http://localhost:3000/guests/deleteGuest/${id}`, {
+      const res = await fetch(`${URL_ORIGIN}guests/deleteGuest/${id}`, {
        method: 'DELETE' 
       });
 
