@@ -161,7 +161,7 @@ export default function ListGifts() {
     .then((data) => setGuests(data))
     .catch((error) => console.error('Erro na chamada à API:', error));
 
-    fetch('${URL_ORIGIN}gifts/gifts')
+    fetch(`${URL_ORIGIN}gifts/gifts`)
       .then((res) => {
         if(!res.ok) {
           console.log('Erro ao buscar presentes');
@@ -170,7 +170,7 @@ export default function ListGifts() {
       })
       .then((gifts) => setGifts(gifts))
       .catch((error) => console.error(`Erro na chama da api ${error}`));
-  }, []);
+  }, [URL_ORIGIN]);
 
   return(
    <div>

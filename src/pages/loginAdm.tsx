@@ -43,7 +43,7 @@ export default function LoginAdmin() {
       })
       .then((data) => setGuests(data))
       .catch((error) => console.error('Erro na chamada à API:', error));
-  }, []);
+  }, [URL_ORIGIN]);
 
   return(
     <div>

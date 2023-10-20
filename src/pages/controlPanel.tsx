@@ -37,7 +37,7 @@ export default function ControlPanel() {
       .then((res) => res.json())
       .then((gift) => setGifts(gift))
       .catch((error) => console.log(`Erro: ${error}`))
-  }, []);
+  }, [URL_ORIGIN]);
 
   const handleGuests = guests.map((guest, i) => {
     return {
