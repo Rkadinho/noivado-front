@@ -43,7 +43,6 @@ export default function LoginAdmin() {
       })
       .then((data) => {
         if (data.guests && Array.isArray(data.guests)) {
-          console.log(data.guests);
           setGuests(data.guests);
         } else {
           console.error('Dados de convidados ausentes ou em formato incorreto');
