@@ -25,7 +25,7 @@ export default function ControlPanel() {
     return guest.name === guestName
   })
 
-  const URL_ORIGIN = process.env.ORIGIN
+  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
 
   useEffect(() => {
     fetch(`${URL_ORIGIN}/guests/guests`)

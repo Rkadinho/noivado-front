@@ -20,8 +20,11 @@ export default function ListGuests() {
   const [selectedGuest, setSelectedGuest] = useState<Guest | null>(null);
   const [status, setStatus] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-
+  
   const navigate = useNavigate();
+
+  
+  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
 
   const openModal = (guest: Guest) => {
     setSelectedGuest(guest);
@@ -87,6 +90,7 @@ export default function ListGuests() {
   }
 
   const renderGuests = () => {
+    console.log(URL_ORIGIN)
     const indexOfLastGuest = currentPage * 8;
     const indexOfFirstGuest = indexOfLastGuest - 8;
     let alphabeticGuest = guests
@@ -109,10 +113,8 @@ export default function ListGuests() {
     setCurrentPage(pageNumber);
   }
 
-  const URL_ORIGIN = process.env.ORIGIN
-
   const updateStatus = (status: string) => {
-    fetch(`${URL_ORIGIN}/guests/status`, {
+    fetch(`${URL_ORIGIN}guests/status`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -139,7 +141,7 @@ export default function ListGuests() {
   }
 
   useEffect(() => {
-    fetch(`${URL_ORIGIN}/guests/guests`)
+    fetch(`${URL_ORIGIN}guests/guests`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro ao buscar os convidados');

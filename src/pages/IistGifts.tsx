@@ -78,7 +78,7 @@ export default function ListGifts() {
     ))
   }
 
-  const URL_ORIGIN = process.env.ORIGIN
+  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
 
   const updateChoseBy = (giftId: any) => {
     fetch(`${URL_ORIGIN}gifts/toChose`, {

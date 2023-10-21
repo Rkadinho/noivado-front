@@ -31,10 +31,10 @@ export default function LoginAdmin() {
     }
   }
 
-  const URL_ORIGIN = process.env.ORIGIN;
+  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
 
   useEffect(() => {
-    fetch(`${URL_ORIGIN}/guests/guests`)
+    fetch(`${URL_ORIGIN}guests/guests`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro ao buscar os convidados');

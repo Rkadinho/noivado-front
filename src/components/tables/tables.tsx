@@ -5,7 +5,7 @@ import '../../css/components/table.css';
 
 export default function Table ({ titles, contents }: Tables) {
 
-  const URL_ORIGIN = process.env.ORIGIN
+  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
 
   const handleDelete = async (id: number) => {
     try {
