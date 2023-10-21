@@ -112,7 +112,7 @@ export default function ListGuests() {
   const URL_ORIGIN = process.env.ORIGIN
 
   const updateStatus = (status: string) => {
-    fetch(`${URL_ORIGIN}guests/status`, {
+    fetch(`${URL_ORIGIN}/guests/status`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ export default function ListGuests() {
   }
 
   useEffect(() => {
-    fetch(`${URL_ORIGIN}guests/guests`)
+    fetch(`${URL_ORIGIN}/guests/guests`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro ao buscar os convidados');
