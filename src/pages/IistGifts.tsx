@@ -168,7 +168,13 @@ export default function ListGifts() {
         }
         return res.json();
       })
-      .then((gifts) => setGifts(gifts))
+      .then((data) => {
+        if(data.gifts && Array.isArray(data.gifts)) {
+          setGifts(data.gifts);
+        } else {
+          console.error('Dados dos presentes ausentes ou em formato incorreto')
+        }
+      })
       .catch((error) => console.error(`Erro na chama da api ${error}`));
   }, [URL_ORIGIN]);
 
