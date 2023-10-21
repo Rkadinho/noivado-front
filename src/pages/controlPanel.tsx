@@ -28,7 +28,7 @@ export default function ControlPanel() {
   const URL_ORIGIN = process.env.ORIGIN
 
   useEffect(() => {
-    fetch(`${URL_ORIGIN}guests/guests`)
+    fetch(`${URL_ORIGIN}/guests/guests`)
       .then((res) => res.json())
       .then((data) => {
         if (data.guests && Array.isArray(data.guests)) {
