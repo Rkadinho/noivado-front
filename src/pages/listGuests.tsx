@@ -90,7 +90,7 @@ export default function ListGuests() {
   }
 
   const renderGuests = () => {
-    console.log(selectedGuest);
+    console.log(selectedGuest?.name);
     const indexOfLastGuest = currentPage * 8;
     const indexOfFirstGuest = indexOfLastGuest - 8;
     let alphabeticGuest = guests
