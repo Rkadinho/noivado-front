@@ -39,7 +39,7 @@ export default function ControlPanel() {
       })
       .catch((error) => console.error(`Erro: ${error}`));
 
-      fetch(`${URL_ORIGIN}gifts/gifts`)
+    fetch(`${URL_ORIGIN}gifts/gifts`)
       .then((res) => res.json())
       .then((data) => {
         if (data.gifts && Array.isArray(data.gifts)) {
@@ -53,6 +53,7 @@ export default function ControlPanel() {
 
   const handleGuests = guests.map((guest, i) => {
     return {
+      id: guest.id,
       name: guest.name,
       code: guest.code,
       status: guest.status
@@ -61,12 +62,13 @@ export default function ControlPanel() {
 
   const handleGifts = gifts.map((gift, i) => {
     return {
+      id: gift.id,
       name: gift.name,
       choseBy: gift.choseBy
     }
   })
 
-  return(
+  return (
     <div>
       {matchingCode?.name === guestName && validAdmin?.name === 'admin' ? (
         <div className="p-4">
@@ -92,11 +94,11 @@ export default function ControlPanel() {
         </div>
       ) : (
         <div className='flex-center'>
-        <div className='grid'>
-          <h1 className='font-secondary'>Pagina não existe</h1>
-          <h1 className='font-secondary' onClick={() => navigate('/loginAdmin')}>voltar</h1>
+          <div className='grid'>
+            <h1 className='font-secondary'>Pagina não existe</h1>
+            <h1 className='font-secondary' onClick={() => navigate('/loginAdmin')}>voltar</h1>
+          </div>
         </div>
-      </div>
       )}
     </div>
   )

@@ -33,10 +33,11 @@ export default function ListGifts() {
   })
 
   const renderGifts = () => {
+    console.log(selectedGift?.id)
     const indexOfLastGifts = currentPage * 8;
     const indexOFFirtsGifts = indexOfLastGifts - 8;
-    let alphabeticGift = gifts.sort((a,b) => {
-      if(a.name && b.name) {
+    let alphabeticGift = gifts.sort((a, b) => {
+      if (a.name && b.name) {
         return a.name.localeCompare(b.name);
       }
       return 0;
@@ -44,7 +45,7 @@ export default function ListGifts() {
     const currentGifts = alphabeticGift.slice(indexOFFirtsGifts, indexOfLastGifts);
 
     const handleClickGift = (gift: any) => {
-      switch(true) {
+      switch (true) {
         case !gift.choseBy && !checkChoseBy:
           openModalConfirm();
           setSelectedGift(gift);
@@ -63,17 +64,17 @@ export default function ListGifts() {
     }
 
     return currentGifts.map((gift) => (
-      <p 
+      <p
         className={`
           font-secondary 
           text-xl 
           ${gift.choseBy ? 'chosen' : ''} 
           ${checkChoseBy ? 'disabled' : ''}`
-        } 
+        }
         key={gift.id}
         onClick={() => handleClickGift(gift)}
-         >
-          {gift.name}
+      >
+        {gift.name}
       </p>
     ))
   }
@@ -92,37 +93,37 @@ export default function ListGifts() {
       })
     })
       .then((res) => {
-        if(!res.ok) {
+        if (!res.ok) {
           console.log('Erro ao escolher presente');
         }
         return res.json();
       })
       .catch((error) => console.error(`Erro na chamada da api ${error}`))
-      closeModal();
-      window.location.reload();
+    closeModal();
+    window.location.reload();
   }
 
   const unselectGift = (gift: any) => {
-      fetch(`${URL_ORIGIN}gifts/unselect`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          giftId: gift
-        })
+    fetch(`${URL_ORIGIN}gifts/unselect`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: gift
       })
-        .then((res) => {
-          if (!res.ok) {
-            console.log('Erro ao desvincular o presente');
-          } else {
-            setSelectedGift(null);
-            window.location.reload();
-          }
-        })
-        .catch((error) => console.error(`Erro na chamada da API ${error}`));
+    })
+      .then((res) => {
+        if (!res.ok) {
+          console.log('Erro ao desvincular o presente');
+        } else {
+          setSelectedGift(null);
+          window.location.reload();
+        }
+      })
+      .catch((error) => console.error(`Erro na chamada da API ${error}`));
   }
-  
+
   const openModal = () => {
     setModalOpen(true);
   }
@@ -141,7 +142,7 @@ export default function ListGifts() {
   const openModalConfirmDesv = () => {
     setModalOpenDesv(true);
   }
-  
+
   const openModalInfo = () => {
     setModalOpenInfo(true);
   }
@@ -152,24 +153,30 @@ export default function ListGifts() {
 
   useEffect(() => {
     fetch(`${URL_ORIGIN}guests/guests`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Erro ao buscar os convidados');
-      }
-      return response.json();
-    })
-    .then((data) => setGuests(data))
-    .catch((error) => console.error('Erro na chamada à API:', error));
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Erro ao buscar os convidados');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.guests && Array.isArray(data.guests)) {
+          setGuests(data.guests);
+        } else {
+          console.error('Dados de convidados ausentes ou em formato incorreto');
+        }
+      })
+      .catch((error) => console.error('Erro na chamada à API:', error));
 
     fetch(`${URL_ORIGIN}gifts/gifts`)
       .then((res) => {
-        if(!res.ok) {
+        if (!res.ok) {
           console.log('Erro ao buscar presentes');
         }
         return res.json();
       })
       .then((data) => {
-        if(data.gifts && Array.isArray(data.gifts)) {
+        if (data.gifts && Array.isArray(data.gifts)) {
           setGifts(data.gifts);
         } else {
           console.error('Dados dos presentes ausentes ou em formato incorreto')
@@ -178,76 +185,76 @@ export default function ListGifts() {
       .catch((error) => console.error(`Erro na chama da api ${error}`));
   }, [URL_ORIGIN]);
 
-  return(
-   <div>
-    {checkGuestName && matchingCode?.name === guestName ? (
-       <div>
-       <div className='text-center pt-8 mt-8 text-gold-40'>
-         <h1>Lista de Presentes</h1>
-         <div>
-           <p className='font-secondary'>{renderGifts()}</p>
-         </div>
-         <div className='text-white-70 p-4 font-secondary pagination '>
-         {Array.from({ length: Math.ceil(gifts.length / 8) }).map((_, index) => (
-           <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
-             {index + 1}
-           </span>
-         ))}
-         </div>
-       </div>
-       <div className='flex-center grid'>
-         <h1 className='text-gold-40'>Paletas de cores dos presentes</h1>
-         <div className='flex'>
-           <div className='colorGifts black m-1 p-8'></div>
-           <div className='colorGifts gray m-1 p-8'></div>
-           <div className='colorGifts bege m-1 p-8'></div>
-           <div className='colorGifts white m-1 p-8'></div>
-         </div>
-       </div>
-       <div className='flex-center'>
-         <Modal isOpen={modalOpen} onClose={closeModal}>
-           <p className='font-secondary'>Este presente ja foi escolhido, tente outro!</p>
-           <GenericButton text='OK' click={closeModal}/>
-         </Modal>
-         <Modal isOpen={modalOpenConfirm} onClose={closeModal}>
-           <p className='text-xl'>Atenção!</p>
-           <p className='font-secondary'>Tem certeza que quer escolher este presente {selectedGift?.name}?</p>
-           <p className='font-secondary'>Não se esqueça da paleta de cores do presente</p>
-           <div className='flex-center'>
-             <div className='colorGifts black m-2 p-4'></div>
-             <div className='colorGifts gray m-2 p-4'></div>
-             <div className='colorGifts bege m-2 p-4'></div>
-             <div className='colorGifts white m-2 p-4'></div>
-           </div>
-           <div className='mb-8 mt-8'>
-             <GenericButton text='Sim' click={() => updateChoseBy(selectedGift?.id)}/>
-           </div>
-           <GenericButton text='Não' click={() => closeModal()}/>
-         </Modal>
-         <Modal isOpen={modalOpenInfo} onClose={closeModal}>
-           <h1>Atenção</h1>
-           <p className='font-secondary'>
-             Para escolher um novo presente deve desvincular o antigo!
-             Para desvicunlar basta clicar no presente escolhido anteriormente.
-           </p>
-           <GenericButton text='Entendi' click={() => closeModal()}/>
-         </Modal>
-         <Modal isOpen={modalOpenDesv} onClose={closeModal}>
-           <p className='text-xl'>Atenção!</p>
-           <p className='font-secondary'>Tem certeza que não quer mais esse {selectedGift?.name} como presente?</p>
-           <div className='mb-8'>
-             <GenericButton text='Sim' click={() => unselectGift(selectedGift?.id)}/>
-           </div>
-           <GenericButton text='Não' click={() => closeModal()}/>
-         </Modal>
-       </div>
-     </div>
-    ) : (<div className='flex-center'>
+  return (
+    <div>
+      {checkGuestName && matchingCode?.name === guestName ? (
+        <div>
+          <div className='text-center pt-8 mt-8 text-gold-40'>
+            <h1>Lista de Presentes</h1>
+            <div>
+              <p className='font-secondary'>{renderGifts()}</p>
+            </div>
+            <div className='text-white-70 p-4 font-secondary pagination '>
+              {Array.from({ length: Math.ceil(gifts.length / 8) }).map((_, index) => (
+                <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
+                  {index + 1}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className='flex-center grid'>
+            <h1 className='text-gold-40'>Paletas de cores dos presentes</h1>
+            <div className='flex'>
+              <div className='colorGifts black m-1 p-8'></div>
+              <div className='colorGifts gray m-1 p-8'></div>
+              <div className='colorGifts bege m-1 p-8'></div>
+              <div className='colorGifts white m-1 p-8'></div>
+            </div>
+          </div>
+          <div className='flex-center'>
+            <Modal isOpen={modalOpen} onClose={closeModal}>
+              <p className='font-secondary'>Este presente ja foi escolhido, tente outro!</p>
+              <GenericButton text='OK' click={closeModal} />
+            </Modal>
+            <Modal isOpen={modalOpenConfirm} onClose={closeModal}>
+              <p className='text-xl'>Atenção!</p>
+              <p className='font-secondary'>Tem certeza que quer escolher este presente {selectedGift?.name}?</p>
+              <p className='font-secondary'>Não se esqueça da paleta de cores do presente</p>
+              <div className='flex-center'>
+                <div className='colorGifts black m-2 p-4'></div>
+                <div className='colorGifts gray m-2 p-4'></div>
+                <div className='colorGifts bege m-2 p-4'></div>
+                <div className='colorGifts white m-2 p-4'></div>
+              </div>
+              <div className='mb-8 mt-8'>
+                <GenericButton text='Sim' click={() => updateChoseBy(selectedGift?.id)} />
+              </div>
+              <GenericButton text='Não' click={() => closeModal()} />
+            </Modal>
+            <Modal isOpen={modalOpenInfo} onClose={closeModal}>
+              <h1>Atenção</h1>
+              <p className='font-secondary'>
+                Para escolher um novo presente deve desvincular o antigo!
+                Para desvicunlar basta clicar no presente escolhido anteriormente.
+              </p>
+              <GenericButton text='Entendi' click={() => closeModal()} />
+            </Modal>
+            <Modal isOpen={modalOpenDesv} onClose={closeModal}>
+              <p className='text-xl'>Atenção!</p>
+              <p className='font-secondary'>Tem certeza que não quer mais esse {selectedGift?.name} como presente?</p>
+              <div className='mb-8'>
+                <GenericButton text='Sim' click={() => unselectGift(selectedGift?.id)} />
+              </div>
+              <GenericButton text='Não' click={() => closeModal()} />
+            </Modal>
+          </div>
+        </div>
+      ) : (<div className='flex-center'>
         <div className='grid'>
           <h1 className='font-secondary'>Pagina não existe</h1>
           <h1 className='font-secondary' onClick={() => navigate('/listGuests')}>voltar</h1>
         </div>
       </div>)}
-   </div>
+    </div>
   )
 }

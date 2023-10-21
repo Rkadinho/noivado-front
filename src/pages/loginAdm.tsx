@@ -26,7 +26,7 @@ export default function LoginAdmin() {
 
   const modal = () => {
     setOpenModal(true)
-    if(openModal) {
+    if (openModal) {
       setOpenModal(false)
     }
   }
@@ -51,22 +51,22 @@ export default function LoginAdmin() {
       .catch((error) => console.error('Erro na chamada à API:', error));
   }, [URL_ORIGIN]);
 
-  return(
+  return (
     <div>
       <h1 className="flex-center text-gold-40">Jenifer & Ricardo</h1>
       <h1 className="flex-center text-gold-40">Noivado</h1>
       <div className="text-white-20 bg-gold-40 p-4 login">
-        <GenericInput text="Login" value={login} onChange={(e: any) => setLogin(e.target.value)}/>
-        <GenericInput text="Senha" value={code} onChange={(e: any) => setCode(e.target.value)} type="password"/>
+        <GenericInput text="Login" value={login} onChange={(e: any) => setLogin(e.target.value)} />
+        <GenericInput text="Senha" value={code} onChange={(e: any) => setCode(e.target.value)} type="password" />
         <div className="mt-8">
-          <GenericButton text="Entrar" click={() => handleLogin()}/>
+          <GenericButton text="Entrar" click={() => handleLogin()} />
         </div>
       </div>
       <div className="flex-center">
         <Modal isOpen={openModal} onClose={modal}>
           <h1>Aviso!</h1>
           <p className="font-secondary">Usuario ou senha incorreta</p>
-          <GenericButton text="Entendi" click={() => modal()}/>
+          <GenericButton text="Entendi" click={() => modal()} />
         </Modal>
       </div>
     </div>

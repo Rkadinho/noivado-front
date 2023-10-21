@@ -11,7 +11,8 @@ export default function Form() {
     code: ''
   });
   const [newGift, setNewGift] = useState<Gift>({
-    name: ''
+    name: '',
+    choseBy: ''
   });
 
   const URL_ORIGIN = 'https://noivado-api.onrender.com/'
@@ -67,47 +68,47 @@ export default function Form() {
         body: JSON.stringify(newGift)
       })
 
-      if(res.ok) {
+      if (res.ok) {
         console.log('Presente adicionado com sucesso!');
         window.location.reload();
       } else {
         console.error('Erro ao adicionar presente.');
       }
-    } catch(error) {
+    } catch (error) {
       console.error(`Erro ao adicionar presente ${error}`);
     }
   }
 
-  return(
+  return (
     <div className="bg-gold-40 text-white-10 flex-center containerForm">
       <div className="p-8">
         <form onSubmit={handleSubmitGuest}>
           <div className="flex pb-8 formGuest">
             <div className="mr-8 marginMobile">
-              <GenericInput 
-                text="Convidado" 
-                type="text" 
-                id="name" 
-                name="name" 
-                value={newGuest.name} 
-                onChange={handleChangeGuest}/>
+              <GenericInput
+                text="Convidado"
+                type="text"
+                id="name"
+                name="name"
+                value={newGuest.name}
+                onChange={handleChangeGuest} />
             </div>
             <div className="mr-8 marginMobile">
-              <GenericInput 
-                text="Codigo" 
-                type="text" 
-                id="code" 
-                name="code" 
-                value={newGuest.code} 
-                onChange={handleChangeGuest}/>
+              <GenericInput
+                text="Codigo"
+                type="text"
+                id="code"
+                name="code"
+                value={newGuest.code}
+                onChange={handleChangeGuest} />
             </div>
-            <GenericButton text="Adicionar convidado" type="submit"/>
+            <GenericButton text="Adicionar convidado" type="submit" />
           </div>
         </form>
         <form onSubmit={handleSubmitGift}>
           <div className="flex mb-8 formGift">
             <div className="mr-8 marginMobile">
-              <GenericInput 
+              <GenericInput
                 text="Presente"
                 type="text"
                 id="name"
@@ -115,7 +116,7 @@ export default function Form() {
                 value={newGift.name}
                 onChange={handleChangeGift} />
             </div>
-            <GenericButton text="Adicionar presente" type="submit"/>
+            <GenericButton text="Adicionar presente" type="submit" />
           </div>
         </form>
       </div>
