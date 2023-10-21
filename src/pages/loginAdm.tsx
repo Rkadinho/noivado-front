@@ -41,7 +41,14 @@ export default function LoginAdmin() {
         }
         return response.json();
       })
-      .then((data) => setGuests(data))
+      .then((data) => {
+        if (data.guests && Array.isArray(data.guests)) {
+          console.log(data.guests);
+          setGuests(data.guests);
+        } else {
+          console.error('Dados de convidados ausentes ou em formato incorreto');
+        }
+      })
       .catch((error) => console.error('Erro na chamada à API:', error));
   }, [URL_ORIGIN]);
 

@@ -30,18 +30,29 @@ export default function ControlPanel() {
   useEffect(() => {
     fetch(`${URL_ORIGIN}guests/guests`)
       .then((res) => res.json())
-      .then((guest) => setGuests(guest))
+      .then((data) => {
+        if (data.guests && Array.isArray(data.guests)) {
+          setGuests(data.guests);
+        } else {
+          console.error('Dados de convidados ausentes ou em formato incorreto');
+        }
+      })
       .catch((error) => console.error(`Erro: ${error}`));
 
       fetch(`${URL_ORIGIN}gifts/gifts`)
       .then((res) => res.json())
-      .then((gift) => setGifts(gift))
+      .then((data) => {
+        if (data.gifts && Array.isArray(data.gifts)) {
+          setGifts(data.gifts);
+        } else {
+          console.error('Dados de convidados ausentes ou em formato incorreto');
+        }
+      })
       .catch((error) => console.log(`Erro: ${error}`))
   }, [URL_ORIGIN]);
 
   const handleGuests = guests.map((guest, i) => {
     return {
-      id: guest.id,
       name: guest.name,
       code: guest.code,
       status: guest.status
@@ -50,7 +61,6 @@ export default function ControlPanel() {
 
   const handleGifts = gifts.map((gift, i) => {
     return {
-      id: gift.id,
       name: gift.name,
       choseBy: gift.choseBy
     }

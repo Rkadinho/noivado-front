@@ -53,7 +53,6 @@ export default function Table ({ titles, contents }: Tables) {
           <tbody className="bg-white-20 text-center text-capitalize">
             {contents?.map((content, i) => (
               <tr key={i}>
-                <td className="p-2">{content.id}</td>
                 <td className="p-2">{content.name}</td>
                 <td className="p-2">{content.code || content.choseBy}</td>
                 <td className="p-2">{content?.status}</td>
