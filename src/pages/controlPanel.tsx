@@ -25,7 +25,7 @@ export default function ControlPanel() {
     return guest.name === guestName
   })
 
-  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
+  const URL_ORIGIN = 'http://localhost:3000/'
 
   useEffect(() => {
     fetch(`${URL_ORIGIN}guests/guests`)

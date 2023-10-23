@@ -11,3 +11,22 @@
   display: flex;
   justify-content: end;
 }
+
+@media (max-width: 375px) {
+  .modalContainer{
+    top: 51px;
+  }
+}
+
+@media (max-width: 360px) {
+  .modalContainer{
+    top: 60px;
+  }
+}
+
+@media (max-width: 320px) {
+  .modalContainer{
+    top: 20px;
+  }
+}
+

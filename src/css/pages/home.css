@@ -1,12 +1,11 @@
 .background {
-  background-image: url("../../img/img3.jpeg");
+  background-image: url("../../img/img5.jpeg");
   background-repeat: no-repeat;
   background-size: cover ;
   background-position: center;
   margin: 0;
   padding: 0;
   height: 100vh;
-  filter: blur(1px);
 }
 
 .container {
@@ -22,8 +21,8 @@
   background-position: center;
   margin: 0;
   padding: 0;
-  height: 50%;
-  width: 35%;
+  height: 30%;
+  width: 20%;
   position: absolute;
   bottom: 0;
   top: 18rem;
@@ -36,39 +35,13 @@
   bottom: 5rem;
 }
 
-.textHome {
-  position: absolute;
-  top: 0;
-}
-
-.textTitle {
-  font-size: 3rem
-}
-
-.textSubtitle {
+.data{
   font-size: 1.5rem;
-}
-
-.border {
-  background-image: url("../../img/ajuste.png");
-  background-repeat: no-repeat;
-  background-size: cover ;
-  background-position: center;
-  margin: 0;
-  padding: 0;
-  width: 81%;
-  height: 73%;
-  position: absolute;
-  bottom: 0;
-  top: 15rem;
-  transform: rotate(-14deg);
+  top: 3.5rem;
+  position: relative
 }
 
 @media (max-width: 768px) {
-  .textSubtitle {
-    font-size: 1.2rem;
-  }
-
   .containerHome{
     width: 100%;
     padding: 0;
@@ -80,13 +53,6 @@
     position: absolute;
   }
 
-  .border {
-    width: 83%;
-    height: 73%;
-    transform: rotate(-6deg);
-    top: 20.5%
-  }
-
   .button{
     position: absolute;
     bottom: 10rem;
@@ -94,10 +60,6 @@
 }
 
 @media (max-width: 414px) {
-  .textSubtitle {
-    font-size: 1.2rem;
-  }
-
   .containerHome{
     width: 100%;
     padding: 0;
@@ -107,27 +69,20 @@
     height: 30%;
     width: 60%;
     position: absolute;
-    top: 46%
-  }
-
-  .border {
-    width: 73%;
-    height: 63%;
-    transform: rotate(-6deg);
-    top: 34%
+    top: 40%
   }
 
   .button{
     position: absolute;
     bottom: 5rem;
   }
+
+  .data{
+    top: 4.5rem;
+  }
 }
 
 @media (max-width: 375px) {
-  .textSubtitle {
-    font-size: 1.2rem;
-  }
-
   .containerHome{
     width: 100%;
     padding: 0;
@@ -137,27 +92,20 @@
     height: 35%;
     width: 55%;
     position: absolute;
-    top: 34%
-  }
-
-  .border {
-    width: 83%;
-    height: 73%;
-    transform: rotate(-6deg);
-    top: 20%
+    top: 40%
   }
 
   .button{
     position: absolute;
     bottom: 5rem;
   }
+
+  .data{
+    top: 3.5rem;
+  }
 }
 
 @media (max-width: 360px) {
-  .textSubtitle {
-    font-size: 1.2rem;
-  }
-
   .containerHome{
     width: 100%;
     padding: 0;
@@ -167,17 +115,15 @@
     height: 30%;
     width: 60%;
     position: absolute;
-  }
-
-  .border {
-    width: 73%;
-    height: 63%;
-    transform: rotate(-6deg);
-    top: 22%
+    top: 40%;
   }
 
   .button{
     position: absolute;
     bottom: 5rem;
+  }
+
+  .data{
+    top: 2.5rem;
   }
 }

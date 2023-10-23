@@ -79,7 +79,7 @@ export default function ListGifts() {
     ))
   }
 
-  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
+  const URL_ORIGIN = 'http://localhost:3000/'
 
   const updateChoseBy = (giftId: any) => {
     fetch(`${URL_ORIGIN}gifts/toChose`, {
