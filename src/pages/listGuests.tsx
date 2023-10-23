@@ -174,7 +174,7 @@ export default function ListGuests() {
       <div className='flex-center modal'>
         <Modal isOpen={modalOpen} onClose={closeModal}>
           <div className='mb-2'>
-            <GenericInput text="Codigo" value={enteredCode} onChange={(e: any) => setEnteredCode(e.target.value)} />
+            <GenericInput text="Codigo" value={enteredCode} onChange={(e: any) => setEnteredCode(e.target.value)} type='password'/>
           </div>
           <GenericButton text="OK" click={() => handleCodeVerifi()} />
         </Modal>

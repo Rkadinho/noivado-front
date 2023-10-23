@@ -19,10 +19,6 @@ export default function Home() {
         <div className="text-center font-secondary photo">
         </div>
         <div className="border"></div>
-        <div className="textHome grid text-gold-40 mt-8">
-          <h1 className="textTitle flex-center">J & R</h1>
-          <p className="textSubtitle flex-center font-secondary font-bold">Convidam para a celebração do seu noivado</p>
-        </div>
         <div className="button">
           <GenericButton text="LISTA DE CONVIDADOS" click={() =>  navigateRoute()}/>
         </div>

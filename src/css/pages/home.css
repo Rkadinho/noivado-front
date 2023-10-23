@@ -65,16 +65,6 @@
 }
 
 @media (max-width: 768px) {
-  body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-
   .textSubtitle {
     font-size: 1.2rem;
   }
@@ -100,5 +90,94 @@
   .button{
     position: absolute;
     bottom: 10rem;
+  }
+}
+
+@media (max-width: 414px) {
+  .textSubtitle {
+    font-size: 1.2rem;
+  }
+
+  .containerHome{
+    width: 100%;
+    padding: 0;
+  }
+
+  .photo {
+    height: 30%;
+    width: 60%;
+    position: absolute;
+    top: 46%
+  }
+
+  .border {
+    width: 73%;
+    height: 63%;
+    transform: rotate(-6deg);
+    top: 34%
+  }
+
+  .button{
+    position: absolute;
+    bottom: 5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .textSubtitle {
+    font-size: 1.2rem;
+  }
+
+  .containerHome{
+    width: 100%;
+    padding: 0;
+  }
+
+  .photo {
+    height: 35%;
+    width: 55%;
+    position: absolute;
+    top: 34%
+  }
+
+  .border {
+    width: 83%;
+    height: 73%;
+    transform: rotate(-6deg);
+    top: 20%
+  }
+
+  .button{
+    position: absolute;
+    bottom: 5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .textSubtitle {
+    font-size: 1.2rem;
+  }
+
+  .containerHome{
+    width: 100%;
+    padding: 0;
+  }
+
+  .photo {
+    height: 30%;
+    width: 60%;
+    position: absolute;
+  }
+
+  .border {
+    width: 73%;
+    height: 63%;
+    transform: rotate(-6deg);
+    top: 22%
+  }
+
+  .button{
+    position: absolute;
+    bottom: 5rem;
   }
 }
