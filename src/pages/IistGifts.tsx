@@ -200,7 +200,7 @@ export default function ListGifts() {
           <div className='text-center pt-8 mt-8 text-gold-40'>
             <h1>Lista de Presentes</h1>
             <div>
-              <p className='font-secondary'>{renderGifts()}</p>
+              <div className='font-secondary'>{renderGifts()}</div>
             </div>
             {gifts && gifts.length > 0 && (
               <div className='text-white-70 p-4 font-secondary pagination '>
