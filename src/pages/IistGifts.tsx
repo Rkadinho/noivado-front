@@ -4,8 +4,6 @@ import { useParams, useNavigate } from 'react-router';
 import '../css/pages/listGifts.css'
 import Modal from '../components/modal/modal';
 import GenericButton from '../components/buttons/genericButton';
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function ListGifts() {
   const [gifts, setGifts] = useState<Gift[]>();
