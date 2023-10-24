@@ -8,6 +8,7 @@ import '../css/pages/controlPanel.css';
 import { useNavigate, useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'
+import TableGift from "../components/tables/tableGift";
 
 export default function ControlPanel() {
   const [guests, setGuests] = useState<Guest[]>([]);
@@ -88,7 +89,7 @@ export default function ControlPanel() {
             </TabPanel>
 
             <TabPanel>
-              <Table titles={tableGift} contents={handleGifts} />
+              <TableGift titles={tableGift} contents={handleGifts} />
             </TabPanel>
           </Tabs>
         </div>

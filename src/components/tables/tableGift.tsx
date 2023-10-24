@@ -3,26 +3,26 @@ import { Tables } from "../../utils/interfaces";
 import { IoIosTrash } from "react-icons/io";
 import '../../css/components/table.css';
 
-export default function Table({ titles, contents }: Tables) {
+export default function TableGift({ titles, contents }: Tables) {
 
   const URL_ORIGIN = 'https://noivado-api.onrender.com/'
 
-  const handleDeleteGuest = async (id: number) => {
+  const handleDeleteGift = async (id: number) => {
     try {
-      const res = await fetch(`${URL_ORIGIN}guests/deleteGuest/${id}`, {
+      const res = await fetch(`${URL_ORIGIN}gifts/deleteGift/${id}`, {
         method: 'DELETE'
       });
 
       if (res.ok) {
         setTimeout(() => {
-          console.log('Convidado excluido com sucesso!');
+          console.log('Presente excluido com sucesso!');
           window.location.reload();
         })
       } else {
-        console.error('Erro ao excluir convidado.');
+        console.error('Erro ao excluir presente.');
       }
     } catch (error) {
-      console.error(`Erro ao excluir convidado ${error}`);
+      console.error(`Erro ao excluir presente ${error}`);
     }
   }
 
@@ -44,7 +44,7 @@ export default function Table({ titles, contents }: Tables) {
               <td className="p-2">{content?.status}</td>
               <td className="p-2">
                 <IoIosTrash onClick={() => {
-                  handleDeleteGuest(content.id)
+                  handleDeleteGift(content.id);
                 }} color="red" />
               </td>
             </tr>
