@@ -75,7 +75,8 @@ export default function ListGifts() {
       <p
         className={`
           font-secondary 
-          text-xl 
+          text-xl
+          text-capitalize
           ${gift.choseBy ? 'chosen' : ''} 
           ${checkChoseBy ? 'disabled' : ''}`
         }
