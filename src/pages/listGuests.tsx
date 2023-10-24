@@ -7,9 +7,11 @@ import Modal from '../components/modal/modal';
 import GenericButton from '../components/buttons/genericButton';
 import { useNavigate } from 'react-router-dom';
 import GenericInput from '../components/inputs/genericInput';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function ListGuests() {
-  const [guests, setGuests] = useState<Guest[]>([]);
+  const [guests, setGuests] = useState<Guest[] | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenStatus, setModalOpenStatus] = useState(false);
   const [modalOpenInfo, setModalOpenInfo] = useState(false);
@@ -24,7 +26,7 @@ export default function ListGuests() {
   const navigate = useNavigate();
 
 
-  const URL_ORIGIN = 'http://localhost:3000/'
+  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
 
   const openModal = (guest: Guest) => {
     setSelectedGuest(guest);
@@ -90,6 +92,13 @@ export default function ListGuests() {
   }
 
   const renderGuests = () => {
+    if (guests === null) {
+      return (
+        <div className="text-gold-40 p-4 font-secondary">
+          <Skeleton count={8} />
+        </div>
+      );
+    }
     const indexOfLastGuest = currentPage * 8;
     const indexOfFirstGuest = indexOfLastGuest - 8;
     let alphabeticGuest = guests
@@ -130,9 +139,10 @@ export default function ListGuests() {
         return res.json();
       })
       .then(() => {
-        const updatedGuest = guests.map((guest) =>
+        let updatedGuest = guests?.map((guest) =>
           guest.id === selectedGuest?.id ? { ...guest, status } : guest
         );
+        updatedGuest = updatedGuest || [];
         setGuests(updatedGuest);
         closeModal();
       })
@@ -163,13 +173,15 @@ export default function ListGuests() {
         <h1 className="text-gold-40">Lista de Convidados</h1>
         <h3 className='text-xl text-gold-40 font-secondary'>Clique no seu nome se estiver na lista</h3>
         <div className='text-gold-40  p-4 font-secondary'>{renderGuests()}</div>
-        <div className='text-white-70 p-4 font-secondary pagination '>
-          {Array.from({ length: Math.ceil(guests.length / 8) }).map((_, index) => (
-            <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
-              {index + 1}
-            </span>
-          ))}
-        </div>
+        {guests && guests.length > 0 && (
+          <div className='text-white-70 p-4 font-secondary pagination '>
+            {Array.from({ length: Math.ceil((guests.length / 8) || 1) }).map((_, index) => (
+              <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
+                {index + 1}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
       <div className='flex-center modal'>
         <Modal isOpen={modalOpen} onClose={closeModal}>

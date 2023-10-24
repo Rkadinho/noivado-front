@@ -4,9 +4,11 @@ import { useParams, useNavigate } from 'react-router';
 import '../css/pages/listGifts.css'
 import Modal from '../components/modal/modal';
 import GenericButton from '../components/buttons/genericButton';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function ListGifts() {
-  const [gifts, setGifts] = useState<Gift[]>([]);
+  const [gifts, setGifts] = useState<Gift[] | null>(null);
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenConfirm, setModalOpenConfirm] = useState(false);
@@ -28,12 +30,18 @@ export default function ListGifts() {
 
   const checkGuestName = validGuestNames.includes(guestName);
 
-  const checkChoseBy = gifts.find((gift) => {
+  const checkChoseBy = gifts?.find((gift) => {
     return gift.choseBy === guestName
   })
 
   const renderGifts = () => {
-    console.log(selectedGift?.id)
+    if (gifts === null) {
+      return (
+        <div className="text-gold-40 p-4 font-secondary">
+          <Skeleton count={8} />
+        </div>
+      );
+    }
     const indexOfLastGifts = currentPage * 8;
     const indexOFFirtsGifts = indexOfLastGifts - 8;
     let alphabeticGift = gifts.sort((a, b) => {
@@ -79,7 +87,7 @@ export default function ListGifts() {
     ))
   }
 
-  const URL_ORIGIN = 'http://localhost:3000/'
+  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
 
   const updateChoseBy = (giftId: any) => {
     fetch(`${URL_ORIGIN}gifts/toChose`, {
@@ -194,13 +202,15 @@ export default function ListGifts() {
             <div>
               <p className='font-secondary'>{renderGifts()}</p>
             </div>
-            <div className='text-white-70 p-4 font-secondary pagination '>
-              {Array.from({ length: Math.ceil(gifts.length / 8) }).map((_, index) => (
-                <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
-                  {index + 1}
-                </span>
-              ))}
-            </div>
+            {gifts && gifts.length > 0 && (
+              <div className='text-white-70 p-4 font-secondary pagination '>
+                {Array.from({ length: Math.ceil(gifts.length / 8) }).map((_, index) => (
+                  <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
+                    {index + 1}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
           <div className='flex-center grid'>
             <h1 className='text-gold-40'>Paletas de cores dos presentes</h1>

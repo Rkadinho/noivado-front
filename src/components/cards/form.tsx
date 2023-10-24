@@ -15,7 +15,7 @@ export default function Form() {
     choseBy: ''
   });
 
-  const URL_ORIGIN = 'http://localhost:3000/'
+  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
 
   const handleChangeGuest = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
