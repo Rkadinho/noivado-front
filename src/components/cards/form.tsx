@@ -19,22 +19,18 @@ export default function Form() {
 
   const handleChangeGuest = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setTimeout(() => {
-      setNewGuest({
-        ...newGuest,
-        [name]: value
-      });
-    }, 1500)
+    setNewGuest({
+      ...newGuest,
+      [name]: value
+    });
   }
 
   const handleChangeGift = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setTimeout(() => {
-      setNewGift({
-        ...newGift,
-        [name]: value
-      });
-    })
+    setNewGift({
+      ...newGift,
+      [name]: value
+    });
   }
 
   const handleSubmitGuest = async (e: React.FormEvent) => {
