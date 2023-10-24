@@ -110,7 +110,7 @@ export default function ListGifts() {
       setTimeout(() => {
         closeModal();
         window.location.reload();
-      }, 2500)
+      }, 1000)
   }
 
   const unselectGift = (gift: any) => {
