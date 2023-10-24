@@ -110,10 +110,10 @@ export default function ListGifts() {
         return res.json();
       })
       .catch((error) => console.error(`Erro na chamada da api ${error}`))
-      setTimeout(() => {
-        closeModal();
-        window.location.reload();
-      }, 1000)
+    setTimeout(() => {
+      closeModal();
+      window.location.reload();
+    }, 1000)
   }
 
   const unselectGift = (gift: any) => {
