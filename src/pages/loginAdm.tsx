@@ -31,7 +31,7 @@ export default function LoginAdmin() {
     }
   }
 
-  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
+  const URL_ORIGIN = 'https://noivadolist.onrender.com/'
 
   useEffect(() => {
     fetch(`${URL_ORIGIN}guests/guests`)

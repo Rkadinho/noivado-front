@@ -26,7 +26,7 @@ export default function ListGuests() {
   const navigate = useNavigate();
 
 
-  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
+  const URL_ORIGIN = 'https://noivadolist.onrender.com/'
 
   const openModal = (guest: Guest) => {
     setSelectedGuest(guest);

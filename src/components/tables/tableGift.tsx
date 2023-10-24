@@ -5,7 +5,7 @@ import '../../css/components/table.css';
 
 export default function TableGift({ titles, contents }: Tables) {
 
-  const URL_ORIGIN = 'https://noivado-api.onrender.com/'
+  const URL_ORIGIN = 'https://noivadolist.onrender.com/'
 
   const handleDeleteGift = async (id: number) => {
     try {
