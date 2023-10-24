@@ -6,7 +6,7 @@ import Modal from '../components/modal/modal';
 import GenericButton from '../components/buttons/genericButton';
 
 export default function ListGifts() {
-  const [gifts, setGifts] = useState<Gift[]>();
+  const [gifts, setGifts] = useState<Gift[]>([]);
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpenConfirm, setModalOpenConfirm] = useState(false);
