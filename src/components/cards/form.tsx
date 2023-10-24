@@ -19,18 +19,22 @@ export default function Form() {
 
   const handleChangeGuest = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setNewGuest({
-      ...newGuest,
-      [name]: value
-    });
+    setTimeout(() => {
+      setNewGuest({
+        ...newGuest,
+        [name]: value
+      });
+    }, 1500)
   }
 
   const handleChangeGift = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setNewGift({
-      ...newGift,
-      [name]: value
-    });
+    setTimeout(() => {
+      setNewGift({
+        ...newGift,
+        [name]: value
+      });
+    })
   }
 
   const handleSubmitGuest = async (e: React.FormEvent) => {
@@ -46,8 +50,10 @@ export default function Form() {
       })
 
       if (res.ok) {
-        console.log("Convidado adicionado com sucesso!");
-        window.location.reload();
+        setTimeout(() => {
+          console.log("Convidado adicionado com sucesso!");
+          window.location.reload();
+        }, 1500)
       } else {
         console.error("Erro ao adicionar convidado.");
       }
@@ -69,8 +75,10 @@ export default function Form() {
       })
 
       if (res.ok) {
-        console.log('Presente adicionado com sucesso!');
-        window.location.reload();
+        setTimeout(() => {
+          console.log('Presente adicionado com sucesso!');
+          window.location.reload();
+        }, 1500)
       } else {
         console.error('Erro ao adicionar presente.');
       }

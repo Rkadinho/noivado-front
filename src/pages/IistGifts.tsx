@@ -84,7 +84,8 @@ export default function ListGifts() {
         key={gift.id}
         onClick={() => handleClickGift(gift)}
       >
-        {gift.name}
+        {gift.name
+        }
       </p>
     ))
   }
