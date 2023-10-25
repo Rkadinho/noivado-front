@@ -16,9 +16,7 @@ export default function Home() {
     <div className="containerHome">
       <div className="background"></div>
       <div className="flex-center">
-        <div className="text-center font-secondary photo">
-          <p className="data">06/08/2023</p>
-        </div>
+        <div className="text-center font-secondary photo"></div>
         <div className="button">
           <GenericButton text="LISTA DE CONVIDADOS" click={() =>  navigateRoute()}/>
         </div>

@@ -1,6 +1,13 @@
 .chosen {
   text-decoration: line-through;
-  color: red;
+  color: #D70040;
+  opacity: 1 !important;
+}
+
+.chosenByMe {
+  text-decoration: none;
+  color:  #0F52BA;
+  font-weight: bold;
   opacity: 1 !important;
 }
 

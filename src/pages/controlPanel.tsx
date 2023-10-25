@@ -71,6 +71,7 @@ export default function ControlPanel() {
 
   const confirmGuest = guests?.filter((guest) => {return guest.status == 'Estarei Presente'}).length;
   const notPresent = guests?.filter((guest) => {return guest.status == 'Não Irei'}).length;
+  const giftsChose = gifts?.filter((gift) => {return gift.choseBy}).length;
 
   return (
     <div>
@@ -80,13 +81,43 @@ export default function ControlPanel() {
             <Form />
           </div>
           <div className="flex-center">
-            <div className="m-8">
+            <div className="mr-8">
               <h3 className="flex-center font-secondary">Pessoas confirmadas</h3>
               <p className="flex-center font-secondary">{confirmGuest}</p>
             </div>
-            <div>
+            <div className="mr-8">
               <h3 className="flex-center font-secondary">Pessoas que não vão</h3>
               <p className="flex-center font-secondary">{notPresent}</p>
+            </div>
+            <div className="mr-8">
+              <h3 className="flex-center font-secondary">Total de confirmaçao</h3>
+              <p className="flex-center font-secondary">{notPresent + confirmGuest}</p>
+            </div>
+            <div className="mr-8">
+              <h3 className="flex-center font-secondary">Total de convidados</h3>
+              <p className="flex-center font-secondary">{guests.length}</p>
+            </div>
+            <div>
+              <h3 className="flex-center font-secondary">total</h3>
+              <p className="flex-center font-secondary">{(((notPresent + confirmGuest) /guests.length) * 100).toFixed(0)}%</p>
+            </div>
+          </div>
+          <div className="flex-center">
+            <div className="mr-8">
+              <h3 className="flex-center font-secondary">Presentes Escolhidos</h3>
+              <p className="flex-center font-secondary">{giftsChose}</p>
+            </div>
+            <div className="mr-8">
+              <h3 className="flex-center font-secondary">Presentes totais</h3>
+              <p className="flex-center font-secondary">{gifts.length}</p>
+            </div>
+            <div className="mr-8">
+              <h3 className="flex-center font-secondary">total</h3>
+              <p className="flex-center font-secondary">{((giftsChose / gifts.length) * 100).toFixed(0)}%</p>
+            </div>
+            <div>
+              <h3 className="flex-center font-secondary">Pessoas que faltam escolher presente</h3>
+              <p className="flex-center font-secondary">{(confirmGuest - giftsChose) - notPresent}</p>
             </div>
           </div>
           <Tabs>

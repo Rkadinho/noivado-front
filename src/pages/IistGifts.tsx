@@ -79,7 +79,8 @@ export default function ListGifts() {
           textGift
           text-capitalize
           ${gift.choseBy ? 'chosen' : ''} 
-          ${checkChoseBy ? 'disabled' : ''}`
+          ${checkChoseBy ? 'disabled' : ''}
+          ${gift.choseBy === guestName ? 'chosenByMe' : ''}`
         }
         key={gift.id}
         onClick={() => handleClickGift(gift)}
