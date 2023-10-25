@@ -70,7 +70,7 @@ export default function ControlPanel() {
   })
 
   const confirmGuest = guests?.filter((guest) => {return guest.status === 'Estarei Presente'}).length;
-  const notPresent = guests?.filter((guest) => {return guest.status === 'Não Irei'}).length;
+  const notPresent = guests?.filter((guest) => {return guest.status === 'Não Irei' || guest.status === 'Não irei'}).length;
   const notPresentWithGift = guests?.filter((guest) => {return guest.status === 'Não irei, porém, mandarei o presente'}).length;
   const giftsChose = gifts?.filter((gift) => {return gift.choseBy}).length;
   const sumConfirm = notPresent + confirmGuest + notPresentWithGift;

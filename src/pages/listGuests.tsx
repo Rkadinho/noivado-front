@@ -214,7 +214,7 @@ export default function ListGuests() {
               <GenericButton text='Não irei, porém, mandarei o presente'
                 click={() => navigateRoute('Não irei, porém, mandarei o presente')} />
             </div>
-            <GenericButton text='não irei' click={() => statusNegative('Não irei')} />
+            <GenericButton text='não irei' click={() => statusNegative('Não Irei')} />
           </div>
         </Modal>
         <Modal isOpen={modalOpenInfo} onClose={closeModal}>
