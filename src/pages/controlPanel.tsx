@@ -69,12 +69,25 @@ export default function ControlPanel() {
     }
   })
 
+  const confirmGuest = guests?.filter((guest) => {return guest.status == 'Estarei Presente'}).length;
+  const notPresent = guests?.filter((guest) => {return guest.status == 'Não Irei'}).length;
+
   return (
     <div>
       {matchingCode?.name === guestName && validAdmin?.name === 'admin' ? (
         <div className="p-4">
           <div className="flex-center">
             <Form />
+          </div>
+          <div className="flex-center">
+            <div className="m-8">
+              <h3 className="flex-center font-secondary">Pessoas confirmadas</h3>
+              <p className="flex-center font-secondary">{confirmGuest}</p>
+            </div>
+            <div>
+              <h3 className="flex-center font-secondary">Pessoas que não vão</h3>
+              <p className="flex-center font-secondary">{notPresent}</p>
+            </div>
           </div>
           <Tabs>
             <TabList>

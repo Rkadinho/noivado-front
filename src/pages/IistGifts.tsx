@@ -210,7 +210,10 @@ export default function ListGifts() {
             {gifts && gifts.length > 0 && (
               <div className='text-white-70 p-4 font-secondary pagination '>
                 {Array.from({ length: Math.ceil(gifts.length / 8) }).map((_, index) => (
-                  <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
+                  <span
+                    key={index} 
+                    onClick={() => paginate(index + 1)} 
+                    className={`m-2 p-2 numbers ${currentPage === index + 1 ? 'bg-gold-20' : 'bg-gold-40'}`}>
                     {index + 1}
                   </span>
                 ))}

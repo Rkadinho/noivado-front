@@ -176,7 +176,10 @@ export default function ListGuests() {
         {guests && guests.length > 0 && (
           <div className='text-white-70 p-4 font-secondary pagination '>
             {Array.from({ length: Math.ceil((guests.length / 8) || 1) }).map((_, index) => (
-              <span key={index} onClick={() => paginate(index + 1)} className='m-2 p-2 bg-gold-40 numbers'>
+              <span 
+                key={index} 
+                onClick={() => paginate(index + 1)} 
+                className={`m-2 p-2 numbers ${currentPage === index + 1 ? 'bg-gold-20' : 'bg-gold-40'}`}>
                 {index + 1}
               </span>
             ))}
@@ -208,10 +211,10 @@ export default function ListGuests() {
           <div className='flex-center containerStatus'>
             <GenericButton text='Estarei Presente' click={() => openModalInfo('Estarei Presente')} />
             <div className='m-4'>
-              <GenericButton text='Náo irei, porém, mandarei o presente'
-                click={() => navigateRoute('Náo irei, porém, mandarei o presente')} />
+              <GenericButton text='Não irei, porém, mandarei o presente'
+                click={() => navigateRoute('Não irei, porém, mandarei o presente')} />
             </div>
-            <GenericButton text='não irei' click={() => statusNegative('Náo irei')} />
+            <GenericButton text='não irei' click={() => statusNegative('Não irei')} />
           </div>
         </Modal>
         <Modal isOpen={modalOpenInfo} onClose={closeModal}>
