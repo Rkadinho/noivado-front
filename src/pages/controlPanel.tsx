@@ -69,9 +69,12 @@ export default function ControlPanel() {
     }
   })
 
-  const confirmGuest = guests?.filter((guest) => {return guest.status == 'Estarei Presente'}).length;
-  const notPresent = guests?.filter((guest) => {return guest.status == 'Não Irei'}).length;
+  const confirmGuest = guests?.filter((guest) => {return guest.status === 'Estarei Presente'}).length;
+  const notPresent = guests?.filter((guest) => {return guest.status === 'Não Irei'}).length;
+  const notPresentWithGift = guests?.filter((guest) => {return guest.status === 'Não irei, porém, mandarei o presente'}).length;
   const giftsChose = gifts?.filter((gift) => {return gift.choseBy}).length;
+  const sumConfirm = notPresent + confirmGuest + notPresentWithGift;
+  const peopleConfirmWhithoutGift = (confirmGuest + notPresentWithGift) - giftsChose;
 
   return (
     <div>
@@ -90,8 +93,12 @@ export default function ControlPanel() {
               <p className="flex-center font-secondary">{notPresent}</p>
             </div>
             <div className="mr-8">
+              <h3 className="flex-center font-secondary">Não vai, mas manda presente</h3>
+              <p className="flex-center font-secondary">{notPresentWithGift}</p>
+            </div>
+            <div className="mr-8">
               <h3 className="flex-center font-secondary">Total de confirmaçao</h3>
-              <p className="flex-center font-secondary">{notPresent + confirmGuest}</p>
+              <p className="flex-center font-secondary">{sumConfirm}</p>
             </div>
             <div className="mr-8">
               <h3 className="flex-center font-secondary">Total de convidados</h3>
@@ -99,7 +106,7 @@ export default function ControlPanel() {
             </div>
             <div>
               <h3 className="flex-center font-secondary">total</h3>
-              <p className="flex-center font-secondary">{(((notPresent + confirmGuest) /guests.length) * 100).toFixed(0)}%</p>
+              <p className="flex-center font-secondary">{((sumConfirm /guests.length) * 100).toFixed(0)}%</p>
             </div>
           </div>
           <div className="flex-center">
@@ -117,7 +124,7 @@ export default function ControlPanel() {
             </div>
             <div>
               <h3 className="flex-center font-secondary">Pessoas que faltam escolher presente</h3>
-              <p className="flex-center font-secondary">{(confirmGuest - giftsChose) - notPresent}</p>
+              <p className="flex-center font-secondary">{peopleConfirmWhithoutGift}</p>
             </div>
           </div>
           <Tabs>
